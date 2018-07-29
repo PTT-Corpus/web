@@ -5,16 +5,18 @@
     <title>Login</title>
 </head>
 <body>
- <h2>Login</h2>
-  <form method="post">
+<h2>Login</h2>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Login</button>
-  </form>
-   <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+</form>
+<br>
+<p><strong>-- OR --</strong></p>
+<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+<p><strong>-- OR --</strong></p>
+<a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
+<p><strong>-- OR --</strong></p>
+<a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
 </body>
 </html>
