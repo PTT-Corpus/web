@@ -163,103 +163,88 @@
          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
     </header>
     <main>
-<div id="index" class="row section">
-    <div class="col l9" style="height:300px; border: 1px solid black">
-        文字雲圖
-    </div>  
-    <div class="col s12 m12 l9">
-        <div class="row section">
-            <div class="col s12">
-                <h5>What is PTT?</h5>
-                <p class="">
-                    PTT(批踢踢) is a terminal-based bulletin board system (BBS) based in Taiwan, which contains over 20,000 discussion boards with more than 1.5 million registered users, and over 10,000 articles are posted everyday.
-                </p>
-            </div>
-            <div class="col s12">
-                <h5>What is PTT Corpus?</h5>
-                <p>
-                    PTT Corpus is the first interactive interface which exploits PTT data for users to query words, make concordance, compare numbers of positive and negative comments of posts, etc.
-                </p>
-            </div>
-
-            <div class="col s12">
-                <h5>What is the purpose of PTT Corpus?</h5>
-                    <p>
-                        PTT(批踢踢) is a terminal-based bulletin board system (BBS) based in Taiwan, which contains over 20,000 discussion boards with more than 1.5 million registered users, and over 10,000 articles are posted everyday.
-                    </p>
-            </div>
-            <div class="col s12">
-                <h5>When does PTT Corpus update?</h5>
-                <p>
-                    Everyday.
-                </p>
-            </div>
-        </div>
         <div class="row">
             <div class="col s12">
-                <h3>Data</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Board
-                            </th>
-                            <th>
-                                Posts
-                            </th>
-                            <th>
-                                Last Update
-                            </th>
-                            <th>
-                                First Post
-                            </th>
-                            <th>
-                                Raw Tokens
-                            </th>
-                            <th>
-                                Raw Types
-                            </th>
-                            <th>
-                                Word Tokens
-                            </th>
-                            <th>
-                                Word Types
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col s3"></div>
-        </div>
+                <h3>
+                    Segmentation
+                </h3>
+                <!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h5>Jseg 結巴斷詞系統 <a href="https://github.com/amigcamel/Jseg">Github repo</a></h5>
+        <div class="divider"></div>
+        <ul>
+            <li>- An enhanced version of <a href="https://github.com/fxsjy/jieba">Jieba</a> segmentator.</li>
+            <li>- Using directed acyclic graph</em> (DAG) and Hidden Markov Model (HMM) to segmentate Chinese words.</li>
+            <li>- Data are trained with Sinica Corpora. Equipped with Emoticon detection. F1-score: 0.91</li>
+        </ul>
 
-        <div class="section row">
-            <div class="col s12">
-                <h3>License</h3>
-                <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/tw/88x31.png" /></a></p><p> 本著作係採用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款</a>授權.</p>
-            </div>
-        </div>
+        <h5>PyCCS 中研院線上斷詞API <a href="https://github.com/amigcamel/PyCCS">Github repo</a></h5>
+        <div class="divider"></div>
+        <ul>
+            <li>- An API for <a href="http://ckipsvr.iis.sinica.edu.tw/">CKIP Segmentator</a> written in Python</li>
+            <li>- Automatically separate word and POS tags</li>
+            <li>- Html-like tag can be segmentated normally</li>
+        </ul>
 
-        <div class="section row">
-            <div class="col s12">
-                <h3>Contact</h3>
-            </div>
-        </div>
+        <h5>Segcom</h5>
+        <div class="divider"></div>
+        <ul>
+            <li>- A tool for comparing the different results from Jseg and PyCCS</li>
+        </ul>
 
     </div>
-    <div class="col s12 m12 l3"></div>
+</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper faucibus ipsum ac euismod. Nam ac erat iaculis, dictum nunc at, aliquet mi. Quisque ac commodo justo, id aliquet mi. Mauris quis dignissim ante. Proin eget sem tristique tellus pulvinar placerat vel sit amet velit. </p>
+<div class="row section">
+    <form>
+        <div class="col s12 l6">
+            <h5>1. Input the text</h5>
+            <textarea id="textarea1" placeholder="範例: asdfasdf"></textarea>
+        </div> 
+        <div class="col s12 l6" style="margin-bottom: 0">
+            <h5>2. Choose an algorithm</h5>
+            <div>
+                <a class="modal-trigger" href="#modal1">What's the difference?</a>
+            </div>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio" checked />
+                <span>Jseg</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio" />
+                <span>PyCCS</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input class="with-gap" name="group1" type="radio"  />
+                <span>Segcom</span>
+              </label>
+            </p>
+            <div>
+                
+            </div>
+            <div>
+                <div class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" type="submit" name="action" style="width:100%; height: 60px"><p>Submit</p>
+                </div>
+            </div>
+             
+        </div>
+    </form>
+    <!--
+    <div class="col s12">
+        <textarea id="textarea1"></textarea>
+        <label for="textarea1"></label>
+    </div>
+-->
+</div>
+
+            </div>
+        </div>
     </main>
     <footer>
         <div class="footer-copyright">
@@ -277,6 +262,12 @@
         };
         var instances = M.Sidenav.init(elems, options);
         console.log(instances)
+    });
+        document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, );
+        var elem = document.querySelectorAll('.modal');
+        var instance = M.Modal.init(elem);
     });
     </script>
 
