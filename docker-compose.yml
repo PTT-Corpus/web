@@ -10,10 +10,10 @@ services:
 
     django:
         build: .
-        container_name: ptt_web
+        container_name: ptt_django
         env_file:
             - web-variables.env
-        command: python3 manage.py runserver 0.0.0.0:8000
+        command: python manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/app
         ports:
