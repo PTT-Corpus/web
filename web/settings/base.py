@@ -22,7 +22,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ALLOWED_HOSTS.split(',') if ALLOWED_HOSTS else []
 
 
 # Application definition
@@ -90,8 +91,8 @@ DATABASES = {
         'NAME': os.environ.get('MYSQL_DATABASE'),
         'USER': os.environ.get('MYSQL_USER'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
-        'HOST': 'ptt_mariadb',
-        'PORT': '3306',
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'PORT': os.environ.get('MYSQL_PORT'),
     }
 }
 
