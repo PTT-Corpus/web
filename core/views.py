@@ -1,5 +1,9 @@
 """Core views."""
 from django.shortcuts import render
+from django.views.generic import TemplateView, FormView
+from django.views import View
+
+from .forms import ConcordanceForm
 
 
 def index(request):
@@ -22,9 +26,24 @@ def collocation(request):
     return render(request, 'collocation.html')
 
 
-def concordance(request):
+class ConcordanceFormView(View):
     """Concordance page."""
-    return render(request, 'concordance.html')
+    template_name = 'concordance.html'
+    form_class = ConcordanceForm
+
+    initial = {
+        'word': '帥哥',
+        'page': 0,
+        'post_type': 0,
+        'order': 'desc',
+        'sort': 'published',
+    }
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+
 
 
 def segmentation(request):
