@@ -159,7 +159,7 @@
             <li>
                 <div class="divider"></div>
             </li>
-            <li><a class="waves-effect" href="apidoc.html">API Documentation</a></li>
+            <li><a class="waves-effect" href="{% url 'apidoc' %}">API Documentation</a></li>
         </ul>
          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
     </header>
@@ -172,6 +172,8 @@
                 </h3>
             </div>
         </div>
+        {% block main_content %}
+        {% endblock main_content %}
     </main>
     <footer>
         <div class="footer-copyright">
