@@ -7,11 +7,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def home(request):
-    """Home."""
-    return render(request, 'core/home.html')
-
-
 def apidoc(request):
     """Documentation page for API."""
     return render(request, 'apidoc.html')
