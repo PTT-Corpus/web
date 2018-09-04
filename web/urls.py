@@ -24,7 +24,6 @@ urlpatterns = [
     path(r'login/', views.login, name='login'),
     path(r'logout/', views.logout, name='logout'),
     path(r'auth/', include('social_django.urls', namespace='social')),
-    path(r'index/', core.views.index, name='index'),
     path(r'', core.views.index, name='index'),
     path(r'apidoc', core.views.apidoc, name='apidoc'),
     path(r'collocation', core.views.collocation, name='collocation'),
