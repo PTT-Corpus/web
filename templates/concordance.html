@@ -3,3 +3,112 @@
 {% block main_title %}
 Concordance
 {% endblock main_title%}
+
+
+{% block main_content %}
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper faucibus ipsum ac euismod. Nam ac erat iaculis, dictum nunc at, aliquet mi. Quisque ac commodo justo, id aliquet mi. Mauris quis dignissim ante. Proin eget sem tristique tellus pulvinar placerat vel sit amet velit. </p>
+<div class="row section">
+	<div class="col s12 m6">
+		<div class="col s12">
+		<h5>query word</h5>
+		<input placeholder="範例: 台大" id="collocation_query" type="text" class="validate">
+
+		</div>
+		<div class="col s12">
+			<h5>Boards</h5>
+			<select multiple>
+			  <option value="" disabled selected>Choose your option</option>
+			  <option value="1">Option 1</option>
+			  <option value="2">Option 2</option>
+			  <option value="3">Option 3</option>
+			</select>
+		</div>
+		<div class="col s12">
+	        <h5>Window size</h5>
+	        <select>
+			  <option value="1">1</option>
+			  <option value="2">2</option>
+			  <option value="3">3</option>
+			  <option value="4">4</option>
+			  <option value="5">5</option>
+			  <option value="6">6</option>
+			  <option value="7">7</option>
+			  <option value="8">8</option>
+			  <option value="9">9</option>
+			  <option value="10">10</option>
+
+
+			</select>
+	    </div>
+	    <div class="col s12">
+	        <h5>Corpus</h5>
+	        <p>
+	          <label>
+	            <input class="with-gap" name="group1" type="radio" checked />
+	            <span>Articles</span>
+	          </label>
+	        </p>
+	        <p>
+	          <label>
+	            <input class="with-gap" name="group1" type="radio" />
+	            <span>Comments</span>
+	          </label>
+	         </p>         
+	    </div>
+	    
+		
+	</div>
+	<div class="col s12 m6">
+		<div class="col s12">
+	        <h5>Part of Speech</h5>
+	        <div class="switch">
+		    <label>
+		      Off
+		      <input type="checkbox">
+		      <span class="lever"></span>
+		      On
+		    </label>
+		  </div>        
+	    </div>
+		<div class="col s12">
+	        <h5>Date range</h5>
+	        <label for="start_date">Start date</label> 
+
+	        <input id="start_date" type="text" class="datepicker"> 
+	        <label for="end_date">End date</label>    
+
+	        <input id="end_date" type="text" class="datepicker"> 
+
+	    </div>
+	    <div class="col s12">
+	        <h5>Time Order</h5>
+	        <p>
+	          <label>
+	            <input class="with-gap" name="group1" type="radio" checked />
+	            <span>Ascending</span>
+	          </label>
+	        </p>
+	        <p>
+	          <label>
+	            <input class="with-gap" name="group1" type="radio" />
+	            <span>Descending</span>
+	          </label>
+	         </p>         
+	    </div>
+	    <div class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" type="submit" name="action" style="width:100%; height: 60px"><p>Submit</p>
+        </div>
+	</div>
+</div>
+
+{% endblock main_content %}
+
+{% block extra_js %}
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var select_elm = document.querySelectorAll('select');
+		var select_instances = M.FormSelect.init(select_elm);
+		var datepicker_elm = document.querySelectorAll('.datepicker');
+		var datepicker_instances = M.Datepicker.init(datepicker_elm);
+	});
+	</script>
+{% endblock extra_js %}

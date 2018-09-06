@@ -1,0 +1,50 @@
+{% load static %}
+<nav class="topnav">
+    <div class="nav-wrapper">
+        <div class="col s12 right-align">
+            <ul class="right">
+                <li>
+                    <a class="modal-trigger" href="#reg-modal">Register</a>
+                </li>
+                <li>
+                    <a class="modal-trigger" href="#login-modal">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<ul id="slide-out" class="sidenav sidenav-fixed" style="line-height: 39px;">
+    <li class="logo">
+      <img src="{% static 'images/PTTCorp.jpg' %}"/>
+    </li>
+    <!-- <li>
+        <div class="container">
+            <div class="row">
+                <div class="col s6 btn-flat center-align" style="border-radius: 2px; border: 1px solid #e0e0e0">
+                    Login
+                </div>
+                <div class="col s6 btn-flat center-align" style="border-radius: 2px; border: 1px solid #e0e0e0">
+                    Register
+                </div>
+            </div>
+        </div>
+    </li> -->
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Tools</a></li>
+    <li><a class="waves-effect active" href="{% url 'segmentation' %}">&nbsp;&nbsp;Segmentation</a></li>
+    <li><a class="waves-effect" href="{% url 'concordance' %}">&nbsp;&nbsp;Concordance</a></li>
+    <li><a class="waves-effect" href="{% url 'collocation' %}">&nbsp;&nbsp;Collocation</a></li>
+    <li><a class="waves-effect" href="{% url 'sentipol' %}">&nbsp;&nbsp;Sentipol</a></li>
+    <li><a class="waves-effect" href="{% url 'wordcloud' %}">&nbsp;&nbsp;Wordcloud</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="{% url 'apidoc' %}">API Documentation</a></li>
+</ul>
+ <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>

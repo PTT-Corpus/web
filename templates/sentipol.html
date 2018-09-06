@@ -3,3 +3,16 @@
 {% block main_title %}
 Sentipol
 {% endblock main_title%}
+
+{% block main_content %}
+Sentiment polarity classifier (情緒極性分類器) is used to classify sentiment polarity into <em>positive</em> and <em>negative</em>. Be aware that Sentipol classifer is for <u>demonstrative</u> and <u>experimental</u> purpose only, and the results might not conform to your expectation. The major problem I'm facing with is the algorithm that I'm using is too naive, but I'll replace it if I find a better one.
+
+<div class="row" style="margin-top: 2em; margin-bottom: 0">
+	<form class="input-field col s12 m6">
+	    <textarea id="textarea1" class="" placeholder="Input any text or sentence below:"></textarea>
+	</form>
+	<form class="input-field col s12 m6">
+	    <textarea id="result"></textarea>
+	</form>
+</div>	
+{% endblock main_content %} 
