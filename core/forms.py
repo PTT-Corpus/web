@@ -1,4 +1,6 @@
 """Core app forms."""
+import ast
+
 from django import forms
 from material import Layout, Row, Column, Fieldset
 
@@ -86,4 +88,7 @@ class ConcordanceForm(forms.Form):
         if (start and end) and (start > end):
             raise forms.ValidationError(
                 "End date cannot be earlier than start date.")
+        boards = cleaned_data.get('boards')
+        if boards:
+            cleaned_data['boards'] = ','.join(ast.literal_eval(boards))
         return cleaned_data
