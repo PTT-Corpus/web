@@ -1,6 +1,4 @@
 """Core app forms."""
-import datetime
-
 from django import forms
 from material import Layout, Row, Column, Fieldset
 
@@ -44,14 +42,16 @@ class ConcordanceForm(forms.Form):
         )))
     start = forms.DateField(
         label='Start',
+        required=False,
     )
     start.widget.attrs['class'] = 'datepicker'
     end = forms.DateField(
         label='End',
+        required=False,
     )
     end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
-        label='Part of Speech',
+        label='',
         required=False,
     )
     window_size = forms.IntegerField(

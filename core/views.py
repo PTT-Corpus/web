@@ -33,7 +33,6 @@ class ConcordanceFormView(View):
         'post_type': 0,
         'order': 'desc',
         'sort': 'published',
-        'pos': False,
     }
 
     def get(self, request, *args, **kwargs):
