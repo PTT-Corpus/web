@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 
+{% block extra_css %}
+<style>
+em {
+  color: red;
+  font-weight: bold;
+}
+</style>
+{% endblock extra_css %}
+
 {% block main_title %}
 Concordance
 {% endblock main_title%}
 
 {% block main_content %}
-{{ data }}
+  <br>
+  <h5>Total Counts: {{ data.total }}</h5>
+  <hr>
+  <div class="col s12 m12">
+    {% for d in data.data %}
+      <div class="row">{{ d.concordance | safe }}</div>
+    {% endfor %}
+  </div>
 {% endblock main_content %}

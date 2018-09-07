@@ -1,7 +1,10 @@
 """Core views."""
+import os
+
 from django.shortcuts import render
 # from django.views.generic import TemplateView, FormView
 from django.views import View
+import requests
 
 from .forms import ConcordanceForm
 
@@ -29,7 +32,7 @@ class ConcordanceFormView(View):
 
     initial = {
         'word': '好雷',
-        'boards': 'Gossiping',
+        'boards': 'movie',
         'post_type': 0,
         'order': 'desc',
         'sort': 'published',
@@ -44,9 +47,14 @@ class ConcordanceFormView(View):
         """POST method."""
         form = self.form_class(request.POST)
         if form.is_valid():
+            resp = requests.get(
+                os.environ['PTT_ENGINE'] + 'query',
+                {k: v for k, v in form.cleaned_data.items() if v},
+            )
+            data = resp.json()
             return render(
                 request, 'concordance_result.html',
-                {'data': form.cleaned_data})
+                {'data': data})
         return render(request, self.template_name, {'form': form})
 
 
