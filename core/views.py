@@ -1,6 +1,4 @@
 """Core views."""
-from datetime import datetime, timedelta
-
 from django.shortcuts import render
 # from django.views.generic import TemplateView, FormView
 from django.views import View
@@ -36,8 +34,6 @@ class ConcordanceFormView(View):
         'order': 'desc',
         'sort': 'published',
         'pos': False,
-        'start': (datetime.now() - timedelta(days=180)),
-        'end': datetime.now(),
     }
 
     def get(self, request, *args, **kwargs):
@@ -49,7 +45,9 @@ class ConcordanceFormView(View):
         """POST method."""
         form = self.form_class(request.POST)
         if form.is_valid():
-            return render(request, 'concordance_result.html', {'data': form.cleaned_data})
+            return render(
+                request, 'concordance_result.html',
+                {'data': form.cleaned_data})
         return render(request, self.template_name, {'form': form})
 
 

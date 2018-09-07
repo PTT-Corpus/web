@@ -9,6 +9,7 @@ Concordance
 {% block main_content %}
 <form method="POST">
   {% csrf_token %}
+  <label for="start_date">Start Date</label>
   {% form form=form %}{% endform %}
   <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3">Submit</button>
 </form>

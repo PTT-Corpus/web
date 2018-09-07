@@ -8,12 +8,6 @@ from material import Layout, Row, Column, Fieldset
 class ConcordanceForm(forms.Form):
     """Concordance form."""
 
-    YEAR_CHOICES = [
-        str(y)
-        for y
-        in range(2005, datetime.datetime.now().year + 1)
-    ]
-
     word = forms.CharField(
         max_length=255,
         label='',
@@ -50,13 +44,12 @@ class ConcordanceForm(forms.Form):
         )))
     start = forms.DateField(
         label='Start',
-        widget=forms.SelectDateWidget(years=YEAR_CHOICES)
     )
+    start.widget.attrs['class'] = 'datepicker'
     end = forms.DateField(
         label='End',
-        widget=forms.SelectDateWidget(years=YEAR_CHOICES),
-        initial=datetime.datetime.now
     )
+    end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
         label='Part of Speech',
         required=False,
