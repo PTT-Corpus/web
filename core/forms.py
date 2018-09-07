@@ -60,6 +60,10 @@ class ConcordanceForm(forms.Form):
         label='',
         initial=5,
     )
+    page = forms.IntegerField(
+        widget=forms.HiddenInput(),
+        required=False,
+    )
 
     layout = Layout(
         Row(
