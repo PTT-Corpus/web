@@ -54,7 +54,7 @@ class ConcordanceFormView(View):
             data = resp.json()
             return render(
                 request, 'concordance_result.html',
-                {'data': data})
+                {'form': form, 'data': data})
         return render(request, self.template_name, {'form': form})
 
 
