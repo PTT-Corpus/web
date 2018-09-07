@@ -9,10 +9,21 @@ Concordance
 {% block main_content %}
 <form method="POST">
   {% csrf_token %}
-  <label for="start_date">Start Date</label>
-  {% form form=form %}{% endform %}
+  {% form form=form %}
+    {% part form.pos control %}
+    <div class="switch">
+      Off
+      <label>
+        <input id="{{ form.pos.auto_id }}" name="{{ form.pos.name }}" type="checkbox">
+        <span class="lever"></span>
+      </label>
+      On
+    </div>
+    {% endpart %}
+  {% endform %}
   <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3">Submit</button>
 </form>
+<br>
 {% endblock main_content %}
 
 {% block extra_js %}
