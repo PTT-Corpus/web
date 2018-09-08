@@ -64,6 +64,11 @@ class ConcordanceForm(forms.Form):
         widget=forms.HiddenInput(),
         required=False,
     )
+    size = forms.IntegerField(
+        label='',
+        initial=10,
+        required=False,
+    )
 
     layout = Layout(
         Row(
@@ -78,6 +83,7 @@ class ConcordanceForm(forms.Form):
                 Fieldset('Part of Speech', 'pos'),
                 Fieldset('Order', 'order'),
                 Fieldset('Sort', 'sort'),
+                Fieldset('Items per Page', 'size'),
                 Fieldset('Date range', 'start', 'end'),
                 span_columns=6,
             ),
