@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load paging %}
 
 {% block extra_css %}
 <style>
@@ -22,15 +23,21 @@ Concordance
     <div class="row">{{ d.concordance | safe }}</div>
 {% endfor %}
 </div>
-
+{% paginator as pages %}
+{% paging_prev as pp %}
+{% paging_next as pg %}
 <ul class="pagination">
-  <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-  {% for i in "x"|rjust:"10" %}
-    <li class="waves-effect {% if data.page == forloop.counter0 %}active{% endif %}">
-      <a href="javascript:;" onclick="paginator({{ forloop.counter0 }});">{{ forloop.counter }}</a>
+  <li class="{% if pp is None %}disabled{% else %}waves-effect{% endif %}">
+    <a href="javascript:;" onclick="paginator({{ pp }})"><i class="material-icons">chevron_left</i></a>
+  </li>
+  {% for page in pages %}
+    <li class="waves-effect {% if data.page == page %}active{% endif %}">
+      <a href="javascript:;" onclick="paginator({{ page }});">{{ page|add:1 }}</a>
     </li>
   {% endfor %}
-  <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  <li class="{% if pg is None %}disabled{% else %}waves-effect{% endif %}">
+    <a href="javascript:;" onclick="paginator({{ pg }})"><i class="material-icons">chevron_right</i></a>
+  </li>
 </ul>
 
 <form method="post" class="hide" id="_form">
