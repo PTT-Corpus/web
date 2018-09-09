@@ -49,7 +49,7 @@ Concordance
 		var select_elm = document.querySelectorAll('select');
 		var select_instances = M.FormSelect.init(select_elm);
 		var datepicker_elm = document.querySelectorAll('.datepicker');
-		var datepicker_instances = M.Datepicker.init(datepicker_elm);
+    var datepicker_instances = M.Datepicker.init(datepicker_elm, {format: 'yyyy-mm-dd'});
 	});
 	</script>
 {% endblock extra_js %}
