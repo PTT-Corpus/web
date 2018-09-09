@@ -36,7 +36,7 @@ def paging_next(context):
     page = context['data']['page']
     size = context['data']['size']
     total_pages = round(context['data']['total'] / size)
-    res = (math.floor((page + 1) / size) * size) + size
-    if res >= total_pages - 1:
+    res = (math.floor(page / size) * size) + size
+    if res > total_pages - 1:
         return None
     return res
