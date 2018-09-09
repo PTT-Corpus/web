@@ -20,6 +20,16 @@ Concordance
       On
     </div>
     {% endpart %}
+    {% part form.window_size %}
+    <p class="range-field">
+      <input type="range" id="{{ form.window_size.auto_id }}" name="{{ form.window_size.name }}" value="10" min="5" max="30" />
+    </p>
+    {% endpart %}
+    {% part form.size %}
+    <p class="range-field">
+      <input type="range" id="{{ form.size.auto_id }}" name="{{ form.size.name }}" value="10" min="10" max="100" step="10" />
+    </p>
+    {% endpart %}
   {% endform %}
   <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3">Submit</button>
 </form>
