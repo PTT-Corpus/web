@@ -10,6 +10,13 @@ Concordance
 <form method="POST">
   {% csrf_token %}
   {% form form=form %}
+    {% part form.boards %}
+      <select id="{{ form.boards.auto_id }}" name="{{ form.boards.name }}" multiple>
+        <option value="Gossiping">八卦版</option>
+        <option value="joke">就可版</option>
+        <option value="movie" selected>電影版</option>
+      </select>
+    {% endpart %}
     {% part form.pos control %}
     <div class="switch">
       Off
