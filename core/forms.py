@@ -58,7 +58,7 @@ class ConcordanceForm(forms.Form):
     )
     window_size = forms.IntegerField(
         label='',
-        initial=5,
+        initial=10,
     )
     page = forms.IntegerField(
         widget=forms.HiddenInput(),
