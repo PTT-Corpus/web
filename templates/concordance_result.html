@@ -18,15 +18,27 @@ Concordance
 <br>
 <h5>Total Counts: {{ data.total }}</h5>
 <hr>
-<div class="col s12 m12">
-  {% for d in data.data %}
-    <div class="row">{{ d.concordance | safe }}</div>
-{% endfor %}
+
+
+{% for d in data.data %}
+<div class="row">
+  <div class="col s5 m5 right-align">
+    {{ d.concordance.0 }} 
+  </div>
+  <div class="col s2 m2 center-align">
+    {{ d.concordance.1|safe }} 
+  </div>
+  <div class="col s5 m5 left-align">
+    {{ d.concordance.2 }} 
+  </div>
 </div>
+{% endfor %}
+
+<br>
 {% paginator as pages %}
 {% paging_prev as pp %}
 {% paging_next as pg %}
-<ul class="pagination">
+<ul class="pagination center-align">
   <li class="{% if pp is None %}disabled{% else %}waves-effect{% endif %}">
     <a href="javascript:;" onclick="paginator({{ pp }})"><i class="material-icons">chevron_left</i></a>
   </li>
