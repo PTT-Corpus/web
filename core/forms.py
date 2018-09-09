@@ -81,8 +81,8 @@ class ConcordanceForm(forms.Form):
             ),
             Column(
                 Fieldset('Part of Speech', 'pos'),
-                Fieldset('Order', 'order'),
                 Fieldset('Sort', 'sort'),
+                Fieldset('Order', 'order'),
                 Fieldset('Items per Page', 'size'),
                 Fieldset('Date range', 'start', 'end'),
                 span_columns=6,
