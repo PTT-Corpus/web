@@ -28,7 +28,7 @@ urlpatterns = [
     path(r'apidoc', core.views.apidoc, name='apidoc'),
     path(r'collocation', core.views.collocation, name='collocation'),
     path(r'concordance', core.views.ConcordanceFormView.as_view(), name='concordance'),
-    path(r'segmentation', core.views.segmentation, name='segmentation'),
+    path(r'segmentation', core.views.SegmentationFormView.as_view(), name='segmentation'),
     path(r'sentipol', core.views.sentipol, name='sentipol'),
     path(r'wordcloud', core.views.wordcloud, name='wordcloud'),
 ]

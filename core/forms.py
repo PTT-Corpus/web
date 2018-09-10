@@ -5,6 +5,38 @@ from django import forms
 from material import Layout, Row, Column, Span
 
 
+class SegmentationForm(forms.Form):
+    """Segmentation form."""
+
+    text = forms.CharField(
+        label='Input Text',
+        widget=forms.Textarea(),
+        required=True,
+    )
+    algo = forms.CharField(
+        label='Algorithms',
+        widget=forms.RadioSelect(
+            choices=(
+                ('Jseg', 'Jseg'),
+                ('PyCCS', 'PyCCS'),
+                ('Segcom', 'Segcom'),
+            ),
+        ),
+        required=True,
+    )
+
+    layout = Row(
+        Column(
+            'text',
+            span_columns=6,
+        ),
+        Column(
+            'algo',
+            span_columns=6,
+        ),
+    )
+
+
 class ConcordanceForm(forms.Form):
     """Concordance form."""
 

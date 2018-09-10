@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load material_form %}
 
 {% block main_title %}
 Segmentation
@@ -33,43 +34,15 @@ Segmentation
     </div>
 </div>
 <div class="row section">
-    <form>
-        <div class="col s12 l6">
-            <h5>1. Input the text</h5>
-            <textarea id="textarea1" placeholder="範例: asdfasdf"></textarea>
-        </div> 
-        <div class="col s12 l6" style="margin-bottom: 0">
-            <h5>2. Choose an algorithm</h5>
-            <div>
-                <a class="modal-trigger" href="#modal1">What's the difference?</a>
-            </div>
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" checked />
-                <span>Jseg</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio" />
-                <span>PyCCS</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input class="with-gap" name="group1" type="radio"  />
-                <span>Segcom</span>
-              </label>
-            </p>
-            <div>
-                
-            </div>
-            <div>
-                <div class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" type="submit" name="action" style="width:100%; height: 60px"><p>Submit</p>
-                </div>
-            </div>
-             
-        </div>
-    </form>
+  <form method='POST'>
+    {% csrf_token %}
+    {% form form=form %}
+      {% part form.algo help_text %}
+      <br>
+      <a class="modal-trigger" href="#modal1">What's the difference?</a>
+      {% endpart %}
+    {% endform %}
+    <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" style="width:100%">Submit</button>
+  </form>
 
 {% endblock main_content %}

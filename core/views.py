@@ -5,8 +5,16 @@ from django.shortcuts import render
 # from django.views.generic import TemplateView, FormView
 from django.views import View
 import requests
+from jseg import Jieba
+from ckip import CkipSegmenter
 
-from .forms import ConcordanceForm
+from .forms import (
+    SegmentationForm,
+    ConcordanceForm,
+)
+
+jieba = Jieba()
+ckip = CkipSegmenter()
 
 
 def index(request):
@@ -58,9 +66,41 @@ class ConcordanceFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-def segmentation(request):
+class SegmentationFormView(View):
     """Segmentation page."""
-    return render(request, 'segmentation.html')
+
+    template_name = 'segmentation.html'
+    form_class = SegmentationForm
+
+    initial = {
+        'text': '中文斷詞真的很複雜◢▆▅▄▃ 崩╰(〒皿〒)╯潰 ▃▄▅▆◣',
+        'algo': 'Jseg',
+    }
+
+    def get(self, request, *args, **kwargs):
+        """GET method."""
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        """POST method."""
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            from django.shortcuts import HttpResponse
+            algo = form.cleaned_data['algo']
+            text = form.cleaned_data['text']
+            if algo == 'Jseg':
+                output = ' '.join((
+                    f'{char}|{pos}'
+                    for (char, pos)
+                    in jieba.seg(text, pos=True)
+                ))
+            elif algo == 'PyCCS':
+                output = ckip.seg(text).raw
+            elif algo == 'Segcom':
+                output = 'NOT SUPPORTED YET!'
+            return HttpResponse(output)
+        return render(request, self.template_name)
 
 
 def sentipol(request):
