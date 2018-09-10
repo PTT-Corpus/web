@@ -8,10 +8,29 @@ em {
   font-weight: bold;
 }
 .info {
-  font-size: 10px;
+  font-size: 15px;
+  margin-bottom: 0;
 }
 .info .material-icons {
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.info > .col {
+  padding: .3rem .75rem;
+}
+
+.badg {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #fff;
+  background-color: #26a69a;
+  border-radius: 2px;
+  padding: 0 6px;
+  text-align: center;
+  box-sizing: border-box;
+  float: left;
+  margin-top: 3px;
+  margin-right: 6px;
 }
 </style>
 {% endblock extra_css %}
@@ -21,55 +40,82 @@ Concordance
 {% endblock main_title%}
 
 {% block main_content %}
-<br>
-<h5>Total Counts: {{ data.total }}</h5>
-<hr>
 
-
-{% for d in data.data %}
-<div class="row">
-  <div class="col s4 m4 right-align">
-    {{ d.concordance.0 }} 
+<h5>Your query</h5>
+<div class="row grey lighten-4">
+  <div class="col s4">
+    <p><span class="badg">Query word</span> {{ query.word }}</p>
+    <p><span class="badg">Boards</span>{{ query.boards }}</p>
+    <p><span class="badg">Post type</span>{{ query.post_type }}</p>
+    
   </div>
-  <div class="col s1 m1 center-align">
-    {{ d.concordance.1|safe }} 
+  <div class="col s4">
+    <p><span class="badg">Sorting</span>{{ query.sort }}</p>
+    <p><span class="badg">Order</span>{{ query.order }}</p>
+    <p><span class="badg">Part of speech</span>{% if query.post %}On{% else %}Off     
+    {% endif %}</p>
+    
   </div>
-  <div class="col s4 m4 left-align">
-    {{ d.concordance.2 }} 
-  </div>
-  <div class="info col s3 m3 right-align">
-    <div class="row">
-      <div class="col s2 m2">
-        <span class="new badge blue">{{ d.board }}</span> 
-      </div>
-      <div class="col s1 m1">
-        <i class="material-icons">thumb_up</i>
-      </div>
-      <div class="col s1 m1">
-        {{ d.upvote }}
-      </div>
-      <div class="col s1 m1">
-        <i class="material-icons">thumb_down</i>
-      </div>
-      <div class="col s1 m1">
-        {{ d.downvote }}
-      </div>
-      <div class="col s1 m1">
-        <i class="material-icons">arrow_forward</i>
-      </div>
-      <div class="col s1 m1">
-        {{ d.novote }}
-      </div>
-      <div class="col s1 m1">
-        <a href="https://www.ptt.cc/bbs/{{ d.board }}/{{ d.id }}.html" target="_blank">
-          <i class="material-icons">link</i>
-        </a>
-      </div>
-    </div>
+  <div class="col s4">
+    <p><span class="badg">Window size</span>{{ query.window_size }}</p>
+    <p><span class="badg">Item per page</span>{{ query.size }}</p>
+    <p><span class="badg">Date interval</span>{{ query.start }}-{{ query.end }}</p>
   </div>
 </div>
-{% endfor %}
+<h5>Total results: {{ data.total }}</h5>
 
+ <table class="highlight">
+  <thead>
+    <tr>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for d in data.data %}
+      <tr>
+        <td style="padding-bottom: 0">
+          <div class="row" style="margin-bottom: 1em">
+            <div class="col s5 right-align">
+              {{ d.concordance.0 }} 
+            </div>
+            <div class="col s1 center-align">
+              {{ d.concordance.1|safe }} 
+            </div>
+            <div class="col s5 left-align">
+              {{ d.concordance.2 }} 
+            </div>
+          </div>
+          <div class="row info">
+            <div class="col s7">
+            </div>
+            <div class="col s1 grey lighten-2">
+              <span>{{ d.board }}</span>
+            </div>
+            <div class="col s1 grey lighten-3">
+              <i class="material-icons">thumb_up</i>
+              <span>{{ d.upvote }}</span>
+            </div>
+            <div class="col s1 grey lighten-3">
+              <i class="material-icons">thumb_down</i>
+              <span>{{ d.downvote }}</span>
+            </div>
+            <div class="col s1 grey lighten-3">
+              <i class="material-icons">arrow_forward</i>
+              <span>{{ d.novote }}</span>
+            </div>
+            <div class="col s1 grey lighten-3">
+              <span><a href="https://www.ptt.cc/bbs/{{ d.board }}/{{ d.id }}.html" target="_blank">
+                <i class="material-icons">link</i>
+              </a>
+              </span>
+            </div>
+          </div>
+        </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <br>
 {% paginator as pages %}
 {% paging_prev as pp %}
