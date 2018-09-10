@@ -86,21 +86,70 @@ class SegmentationFormView(View):
         """POST method."""
         form = self.form_class(request.POST)
         if form.is_valid():
-            from django.shortcuts import HttpResponse
             algo = form.cleaned_data['algo']
             text = form.cleaned_data['text']
             if algo == 'Jseg':
                 output = ' '.join((
-                    f'{char}|{pos}'
+                    f'{char}|<span class="pos">{pos}</span>'
                     for (char, pos)
                     in jieba.seg(text, pos=True)
                 ))
             elif algo == 'PyCCS':
-                output = ckip.seg(text).raw
+                res = ckip.seg(text)
+                output = ' '.join((f'{char}|<span class="pos">{pos}</span>'
+                                   for (char, pos)
+                                   in zip(res.tok, res.pos)))
             elif algo == 'Segcom':
-                output = 'NOT SUPPORTED YET!'
-            return HttpResponse(output)
+                output = self._segcom(text)
+            return render(request, 'segmentation_result.html',
+                          {'algo': algo, 'output': output})
         return render(request, self.template_name)
+
+    def _segcom(self, txt):
+        jres = jieba.seg(txt)
+        cres = ckip.seg(txt).tok
+        if (
+            len(''.join(jres).replace(' ', '').replace('\n', '')) !=
+            len(''.join(cres).replace(' ', '').replace('\n', ''))
+        ):
+            raise Exception(
+                'Unequal length of results, fail to compare'
+            )
+        source = ''.join(jres)
+        cnt_j, cnt_c = 0, 0
+        idxcon_j, idxcon_c = [], []
+        for word in jres:
+            idx = ''
+            for char in word:
+                idx += f'_{cnt_j}'
+                cnt_j += 1
+            idxcon_j.append(idx)
+        for word in cres:
+            idx = ''
+            for char in word:
+                idx += f'_{cnt_c}'
+                cnt_c += 1
+            idxcon_c.append(idx)
+
+        ovlps = set(idxcon_j) & set(idxcon_c)
+        output_j, output_c = '', ''
+        for i in idxcon_j:
+            idxs = [int(j) for j in i.split('_') if j != '']
+            recv = ''.join([source[idx] for idx in idxs])
+            if i in ovlps:
+                output_j += recv
+            else:
+                output_j += '<span class="diff">%s</span>' % recv
+            output_j += ' '
+        for i in idxcon_c:
+            idxs = [int(j) for j in i.split('_') if j != '']
+            recv = ''.join([source[idx] for idx in idxs])
+            if i in ovlps:
+                output_c += recv
+            else:
+                output_c += '<span class="diff">%s</span>' % recv
+            output_c += ' '
+        return (output_j, output_c)
 
 
 def sentipol(request):

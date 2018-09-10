@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% block extra_css %}
+<style>
+.diff {
+  color: red;
+}
+.pos {
+  color: green;
+}
+</style>
+{% endblock extra_css %}
+
+{% block main_title %}
+Segmentation
+{% endblock main_title %}
+
+{% block main_content %}
+<div class="row section">
+  {% if algo == 'Segcom' %}
+  <div class="col s12 m6">
+    <h5>Jseg</h5>
+    {{ output.0 | safe }}
+  </div>
+  <div class="col s12 m6">
+    <h5>PyCCS</h5>
+    {{ output.1 | safe }}
+  </div>
+  {% else %}
+  <div class="col s12 m12">
+    <h5>{{ algo }}</h5>
+    {{ output | safe }}
+  </div>
+  {% endif %}
+</div>
+{% endblock main_content %}
