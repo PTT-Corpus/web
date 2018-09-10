@@ -10,14 +10,16 @@ Concordance
 <form method="POST">
   {% csrf_token %}
   {% form form=form %}
-    {% part form.boards %}
+    {% part form.boards control %}
       <select id="{{ form.boards.auto_id }}" name="{{ form.boards.name }}" multiple>
         <option value="Gossiping">八卦版</option>
         <option value="joke">就可版</option>
         <option value="movie" selected>電影版</option>
       </select>
     {% endpart %}
-    {% part form.pos control %}
+    {% part form.pos %}
+    <label>{{ form.post_type.label }}</label>
+    <br><br>
     <div class="switch">
       Off
       <label>
@@ -26,19 +28,24 @@ Concordance
       </label>
       On
     </div>
+    <br>
     {% endpart %}
-    {% part form.window_size %}
+    {% part form.window_size control %}
     <p class="range-field">
       <input type="range" id="{{ form.window_size.auto_id }}" name="{{ form.window_size.name }}" value="10" min="5" max="30" />
     </p>
     {% endpart %}
-    {% part form.size %}
+    {% part form.size control %}
     <p class="range-field">
       <input type="range" id="{{ form.size.auto_id }}" name="{{ form.size.name }}" value="10" min="10" max="100" step="10" />
     </p>
     {% endpart %}
   {% endform %}
-  <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3">Submit</button>
+  <div class="row">
+    <div class="col s12 m12">
+      <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" style="width:100%">Submit</button>
+    </div>
+  </div>
 </form>
 <br>
 {% endblock main_content %}

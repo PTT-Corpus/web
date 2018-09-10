@@ -2,7 +2,7 @@
 import ast
 
 from django import forms
-from material import Layout, Row, Column, Fieldset
+from material import Layout, Row, Column, Span
 
 
 class ConcordanceForm(forms.Form):
@@ -10,17 +10,19 @@ class ConcordanceForm(forms.Form):
 
     word = forms.CharField(
         max_length=255,
-        label='',
+        label='Query Word',
     )
     post_type = forms.CharField(
-        label='',
+        label='Post Type',
         widget=forms.RadioSelect(choices=(
             (0, "Posts"),
             (1, "Comments"),
-        ))
+            (None, "All"),
+        )),
+        required=False,
     )
     boards = forms.CharField(
-        label='',
+        label='Boards',
         widget=forms.CheckboxSelectMultiple(choices=(
             ('Gossiping', '八卦板'),
             ('joke', '就可板'),
@@ -29,7 +31,7 @@ class ConcordanceForm(forms.Form):
         required=False,
     )
     sort = forms.CharField(
-        label='',
+        label='Sort',
         widget=forms.RadioSelect(choices=(
             ('published', 'Publish Time'),
             ('upvote', 'Likes (推)'),
@@ -37,27 +39,27 @@ class ConcordanceForm(forms.Form):
         )),
     )
     order = forms.CharField(
-        label='',
+        label='Order',
         widget=forms.RadioSelect(choices=(
             ('desc', 'Descending'),
             ('asc', 'Ascending')
         )))
     start = forms.DateField(
-        label='Start',
+        label='Start Date',
         required=False,
     )
     start.widget.attrs['class'] = 'datepicker'
     end = forms.DateField(
-        label='End',
+        label='End Date',
         required=False,
     )
     end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
-        label='',
+        label='Part of Speech',
         required=False,
     )
     window_size = forms.IntegerField(
-        label='',
+        label='Window Size',
         initial=10,
     )
     page = forms.IntegerField(
@@ -65,7 +67,7 @@ class ConcordanceForm(forms.Form):
         required=False,
     )
     size = forms.IntegerField(
-        label='',
+        label='Item per Page',
         initial=10,
         required=False,
     )
@@ -73,18 +75,25 @@ class ConcordanceForm(forms.Form):
     layout = Layout(
         Row(
             Column(
-                Fieldset('Query Word', 'word'),
-                Fieldset('Boards', 'boards'),
-                Fieldset('Window Size', 'window_size'),
-                Fieldset('Post Type', 'post_type'),
+                'word',
+                'boards',
+                Row(
+                    Span(4, 'post_type'),
+                    Span(4, 'sort'),
+                    Span(4, 'order'),
+                ),
                 span_columns=6,
             ),
             Column(
-                Fieldset('Part of Speech', 'pos'),
-                Fieldset('Sort', 'sort'),
-                Fieldset('Order', 'order'),
-                Fieldset('Items per Page', 'size'),
-                Fieldset('Date range', 'start', 'end'),
+                'pos',
+                Row(
+                    Span(6, 'window_size'),
+                    Span(6, 'size'),
+                ),
+                Row(
+                    Span(6, 'start'),
+                    Span(6, 'end'),
+                ),
                 span_columns=6,
             ),
         ),
