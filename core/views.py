@@ -54,7 +54,6 @@ class ConcordanceFormView(View):
                 {k: v for k, v in form.cleaned_data.items() if v},
             )
             data = resp.json()
-            print(request.POST)
             return render(
                 request,
                 'concordance_result.html',
