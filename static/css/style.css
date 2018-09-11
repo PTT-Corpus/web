@@ -5,7 +5,7 @@ h4,
 h5,
 h6,
 header a {
-    font-family: "Roboto Condensed", serif;
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "Microsoft JhengHei", "標楷體", DFKai-SB, sans-serif;
     /* font-weight: 700; */
 }
 
@@ -49,6 +49,7 @@ footer {
 }
 
 body {
+    font-family: Arial, "文泉驛正黑", "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", "Microsoft JhengHei", "標楷體", DFKai-SB, sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
