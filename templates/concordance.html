@@ -11,11 +11,8 @@ Concordance
   {% csrf_token %}
   {% form form=form %}
     {% part form.boards control %}
-      <select id="{{ form.boards.auto_id }}" name="{{ form.boards.name }}" multiple>
-        <option value="Gossiping">八卦版</option>
-        <option value="joke">就可版</option>
-        <option value="movie" selected>電影版</option>
-      </select>
+      <input type="hidden" id="{{ form.boards.auto_id }}" name="{{ form.boards.name }}" />
+      <div id="boards" class="chips chips-autocomplete"></div>
     {% endpart %}
     {% part form.pos %}
     <label>{{ form.post_type.label }}</label>
@@ -52,12 +49,46 @@ Concordance
 
 {% block extra_js %}
 	<script>
+    function updateBoards() {
+      var d = document.getElementsByClassName("chip");
+      var tmp = [];
+      for (var i = 0; i < d.length; i++) {
+        tmp.push(d[i].firstChild.data);
+      }
+      console.log(tmp);
+      document.getElementById("{{ form.boards.auto_id }}").value = tmp;
+      console.log(document.getElementById("{{ form.boards.auto_id }}").value);
+    };
 	document.addEventListener('DOMContentLoaded', function() {
 		var select_elm = document.querySelectorAll('select');
 		var select_instances = M.FormSelect.init(select_elm);
 		var datepicker_elm = document.querySelectorAll('.datepicker');
     var datepicker_instances = M.Datepicker.init(datepicker_elm, {format: 'yyyy-mm-dd'});
 	});
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.chips');
+    var boards = {'joke': null, 'movie': null, 'marvel': null, 'Tech_Job': null, 'japanavgirls': null, 'Hearthstone': null, 'KR_Entertain': null, 'Beauty': null, 'Hip-Hop': null, 'Steam': null, 'HardwareSale': null, 'Japan_Travel': null, 'MakeUp': null, 'Japandrama': null, 'Salary': null, 'marriage': null, 'NSwitch': null, 'Tennis': null, 'Kaohsiung': null, 'e-shopping': null, 'Monkeys': null, 'MuscleBeach': null, 'BabyMother': null, 'BTS': null, 'Boy-Girl': null, 'TaichungBun': null, 'MLB': null, 'home-sale': null, 'China-Drama': null, 'PC_Shopping': null, 'YuanChuang': null, 'ToS': null, 'Tainan': null, 'iOS': null, 'PokemonGO': null, 'Gossiping': null, 'HatePolitics': null, 'WomenTalk': null, 'SportLottery': null, 'TY_Research': null, 'creditcard': null, 'FATE_GO': null, 'MobileComm': null, 'Baseball': null, 'KoreaDrama': null, 'WOW': null, 'Guardians': null, 'BeautySalon': null, 'CFantasy': null, 'KoreaStar': null, 'StupidClown': null, 'PlayStation': null, 'AllTogether': null, 'BuyTogether': null, 'sex': null, 'C_Chat': null, 'car': null, 'Stock': null, 'Wanted': null, 'AKB48': null, 'KanColle': null, 'ChungLi': null, 'BabyProducts': null, 'GetMarry': null, 'Lifeismoney': null, 'give': null, 'Zastrology': null, 'Gamesale': null, 'LoL': null, 'Hsinchu': null, 'AC_In': null, 'MacShop': null, 'basketballTW': null, 'CVS': null, 'HelpBuy': null, 'CarShop': null, 'part-time': null, 'cat': null, 'nb-shopping': null, 'Elephants': null, 'mobilesales': null, 'TaiwanDrama': null, 'DC_SALE': null, 'lesbian': null, 'IdolMaster': null, 'MobilePay': null, 'Headphone': null, 'DMM_GAMES': null, 'Palmar_Drama': null, 'Teacher': null, 'Food': null, 'cookclub': null, 'gay': null, 'shoes': null, 'NBA': null, 'PublicServan': null, 'DSLR': null, 'Aviation': null, 'MH': null, 'EAseries': null, 'Storage_Zone': null, 'Isayama': null, 'Finance': null, 'PRODUCE48': null, 'GirlsFront': null, 'StarCraft': null, 'ONE_PIECE': null, 'biker': null, 'MayDay': null, 'NBA_Film': null, 'Examination': null, 'PCReDive': null, 'BigBanciao': null, 'watch': null, 'fastfood': null, 'LGBT_SEX': null, 'PathofExile': null, 'Soft_Job': null, 'RealmOfValor': null, 'CN_Entertain': null, 'Gov_owned': null, 'PuzzleDragon': null, 'TypeMoon': null, 'TW_Entertain': null}
+    var options = {
+      data: [
+        {tag: 'movie'},
+      ],
+      autocompleteOptions: {
+        data: boards
+      },
+      onChipAdd: function(e, chip) {
+        if (!boards.hasOwnProperty(chip.firstChild.data)) {
+          var chips = document.getElementsByClassName('chip');
+          chips[chips.length-1].remove();
+        } else {
+          updateBoards(); 
+        }
+      },
+      onChipDelete: function(e, chip) {
+        updateBoards();
+      }
+    };
+    var instances = M.Chips.init(elems, options);
+  });
 	</script>
 {% endblock extra_js %}
 
