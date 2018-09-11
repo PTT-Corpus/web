@@ -16,8 +16,6 @@ from .forms import (
 jieba = Jieba()
 ckip = CkipSegmenter()
 
-from django.http import JsonResponse
-
 
 def index(request):
     """Index page."""

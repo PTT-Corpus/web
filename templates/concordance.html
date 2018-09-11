@@ -77,6 +77,7 @@ Concordance
       },
       onChipAdd: function(e, chip) {
         if (!boards.hasOwnProperty(chip.firstChild.data)) {
+          console.log(chip.firstChild.data)
           var chips = document.getElementsByClassName('chip');
           chips[chips.length-1].remove();
         } else {
