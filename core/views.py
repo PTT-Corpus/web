@@ -73,8 +73,12 @@ class SegmentationFormView(View):
     form_class = SegmentationForm
 
     initial = {
-        'text': '中文斷詞真的很複雜◢▆▅▄▃ 崩╰(〒皿〒)╯潰 ▃▄▅▆◣',
-        'algo': 'Jseg',
+        'text': '人文學群的Python程式設計入門。\
+人文社會學群學習者不能安於對於現有程式語法的熟悉和背誦，\
+或被規訓成為現有虛擬世界的消費者。\n\
+在人文社會精神下培養計算思維，才能讓虛擬\
+世界變複數型，開啟人機互動的更多可能。',
+        'algo': 'Segcom',
     }
 
     def get(self, request, *args, **kwargs):
