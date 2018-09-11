@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load paging %}
+{% load pos %}
+
 
 {% block extra_css %}
 <style>
@@ -32,6 +34,34 @@ em {
   margin-top: 3px;
   margin-right: 6px;
 }
+
+.pos {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #0288d1;
+  /* background-color: #00acc1; */
+  /* border-radius: 20px; */
+  /* padding: 0 6px; */
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0 12px 0 2px;
+  /* vertical-align: super; */
+  position: relative;
+  top: -.5em;
+}
+
+.highlight .col {
+  line-height: 2em;
+}
+
+.highlight .right-align {
+  padding: 0;
+}
+
+.highlight .left-align {
+  padding: 0;
+}
+
 </style>
 {% endblock extra_css %}
 
@@ -52,7 +82,7 @@ Concordance
   <div class="col s4">
     <p><span class="badg">Sorting</span>{{ query.sort }}</p>
     <p><span class="badg">Order</span>{{ query.order }}</p>
-    <p><span class="badg">Part of speech</span>{% if query.post %}On{% else %}Off     
+    <p><span class="badg">Part of speech</span>{% if query.pos %}On{% else %}Off     
     {% endif %}</p>
     
   </div>
@@ -77,13 +107,25 @@ Concordance
         <td style="padding-bottom: 0">
           <div class="row" style="margin-bottom: 1em">
             <div class="col s5 right-align">
-              {{ d.concordance.0 }} 
+                {% if query.pos %}
+                  {{ d.concordance.0|pos }}
+                {% else %}
+                  {{ d.concordance.0 }}
+                {% endif %}
             </div>
             <div class="col s1 center-align">
-              {{ d.concordance.1|safe }} 
+              {% if query.pos %}
+                  {{ d.concordance.1|safe|pos }}
+                {% else %}
+                  {{ d.concordance.1|safe }}
+                {% endif %}
             </div>
-            <div class="col s5 left-align">
-              {{ d.concordance.2 }} 
+            <div class="col s6 left-align">
+              {% if query.pos %}
+                  {{ d.concordance.2|pos }}
+                {% else %}
+                  {{ d.concordance.2 }}
+                {% endif %}
             </div>
           </div>
           <div class="row info">

@@ -8,8 +8,6 @@ import requests
 
 from .forms import ConcordanceForm
 
-from django.http import JsonResponse
-
 
 def index(request):
     """Index page."""
