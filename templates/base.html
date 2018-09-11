@@ -116,9 +116,8 @@
             return str.substring(str.lastIndexOf("/") + 1, str.length);
         });
 
-    var current_path = window.location.pathname;
-    var v = current_path.substring(1, current_path.length);
-    var index = array_of_nav_string.indexOf(v);
+    var current_path = window.location.pathname.split('/').reverse()[0];
+    var index = array_of_nav_string.indexOf(current_path);
     nav_items[index].parentNode.classList.add('active');
 
 
