@@ -8,6 +8,8 @@ import requests
 
 from .forms import ConcordanceForm
 
+from django.http import JsonResponse
+
 
 def index(request):
     """Index page."""
@@ -53,8 +55,15 @@ class ConcordanceFormView(View):
             )
             data = resp.json()
             return render(
-                request, 'concordance_result.html',
-                {'form': form, 'data': data})
+                request,
+                'concordance_result.html',
+                {
+                    'form': form,
+                    'data': data,
+                    'query': request.POST
+                }
+            )
+
         return render(request, self.template_name, {'form': form})
 
 
