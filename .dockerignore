@@ -1,0 +1,9 @@
+.git
+.gitignore
+.envrc
+pttweb.env
+README.md
+Dockerfile
+docker-compose.yml
+pttweb.db
+static_pttweb
