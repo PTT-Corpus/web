@@ -122,11 +122,21 @@ class SegmentationFormView(View):
         return render(request, self.template_name)
 
     def _segcom(self, txt):
-        jres = jieba.seg(txt)
-        cres = ckip.seg(txt).tok
+        jraw = jieba.seg(txt, pos=True)
+        jres, jpos = [], []
+        for char, pos in jraw:
+            if char != '\n':
+                jres.append(char)
+                jpos.append(pos)
+        cres, cpos = [], []
+        craw = ckip.seg(txt).res
+        for char, pos in craw:
+            if char != '\n':
+                cres.append(char)
+                cpos.append(pos)
         if (
-            len(''.join(jres).replace(' ', '').replace('\n', '')) !=
-            len(''.join(cres).replace(' ', '').replace('\n', ''))
+            len(''.join(jres).replace(' ', '')) !=
+            len(''.join(cres).replace(' ', ''))
         ):
             raise Exception(
                 'Unequal length of results, fail to compare'
@@ -149,21 +159,21 @@ class SegmentationFormView(View):
 
         ovlps = set(idxcon_j) & set(idxcon_c)
         output_j, output_c = '', ''
-        for i in idxcon_j:
+        for n, i in enumerate(idxcon_j):
             idxs = [int(j) for j in i.split('_') if j != '']
             recv = ''.join([source[idx] for idx in idxs])
             if i in ovlps:
                 output_j += recv
             else:
-                output_j += '<span class="diff">%s</span>' % recv
+                output_j += f'<span class="diff">{recv}|{jpos[n]}</span>'
             output_j += ' '
-        for i in idxcon_c:
+        for n, i in enumerate(idxcon_c):
             idxs = [int(j) for j in i.split('_') if j != '']
             recv = ''.join([source[idx] for idx in idxs])
             if i in ovlps:
                 output_c += recv
             else:
-                output_c += '<span class="diff">%s</span>' % recv
+                output_c += f'<span class="diff">{recv}|{cpos[n]}</span>'
             output_c += ' '
         return (output_j, output_c)
 
