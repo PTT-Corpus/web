@@ -1,6 +1,4 @@
 """Core app forms."""
-import ast
-
 from django import forms
 from material import Layout, Row, Column, Span
 
@@ -23,11 +21,10 @@ class ConcordanceForm(forms.Form):
     )
     boards = forms.CharField(
         label='Boards',
-        widget=forms.CheckboxSelectMultiple(choices=(
-            ('Gossiping', '八卦板'),
-            ('joke', '就可板'),
-            ('movie', '電影板'),
-        )),
+        widget=forms.HiddenInput(
+            attrs={'type': 'hidden'},
+        ),
+        initial='Gossiping,joke',
         required=False,
     )
     sort = forms.CharField(
@@ -56,10 +53,12 @@ class ConcordanceForm(forms.Form):
     end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
         label='Part of Speech',
+        widget=forms.CheckboxInput(),
         required=False,
     )
     window_size = forms.IntegerField(
         label='Window Size',
+        widget=forms.NumberInput(attrs={'type': 'range', 'min': 5, 'max': 30}),
         initial=10,
     )
     page = forms.IntegerField(
@@ -68,6 +67,9 @@ class ConcordanceForm(forms.Form):
     )
     size = forms.IntegerField(
         label='Item per Page',
+        widget=forms.NumberInput(
+            attrs={'type': 'range', 'min': 10, 'max': 100, 'step': 10}
+        ),
         initial=10,
         required=False,
     )
@@ -107,7 +109,4 @@ class ConcordanceForm(forms.Form):
         if (start and end) and (start > end):
             raise forms.ValidationError(
                 "End date cannot be earlier than start date.")
-        boards = cleaned_data.get('boards')
-        if boards:
-            cleaned_data['boards'] = ','.join(ast.literal_eval(boards))
         return cleaned_data
