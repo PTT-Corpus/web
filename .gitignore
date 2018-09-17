@@ -206,5 +206,6 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/vim,linux,macos,django,python,windows
 .envrc
+pttweb.env
 static_pttweb
 pttweb.db
