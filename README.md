@@ -27,4 +27,11 @@ Please add these evvironment variables:
 
 ### Deploy 
 
+
+For development:
+
     python manage.py runserver
+
+For production:
+
+    uwsgi --master --http 0.0.0.0:8888 --module web.wsgi --static-map /static_pttweb=static_pttweb --process 4 --manage-script-name --mount=/_pttcorp=web/wsgi.py

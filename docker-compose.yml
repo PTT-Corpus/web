@@ -4,24 +4,17 @@ services:
   mariadb:
     image: mariadb
     restart: always
-    container_name: ptt_mariadb
-    env_file:
-    - web-variables.env
     volumes:
       - ./maria:/etc/mysql/
 
   django:
-    build: .
-    container_name: ptt_django
+    image: pttweb:0.0.0
     restart: always
-    env_file:
-    - web-variables.env
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    #        tty: true
-    #        stdin_open: true
-    volumes:
-    - .:/app
     ports:
-    - "8000:8000"
+      - 8888:8888
+    env_file:
+      - pttweb.env
+    volumes:
+      - ./static_pttweb:/app/static_pttweb
     depends_on:
     - mariadb
