@@ -12,6 +12,7 @@ from .forms import (
     SegmentationForm,
     ConcordanceForm,
 )
+from .data import boards
 
 jieba = Jieba()
 ckip = CkipSegmenter()
@@ -39,17 +40,21 @@ class ConcordanceFormView(View):
     form_class = ConcordanceForm
 
     initial = {
-        'word': '好雷',
-        'boards': 'movie',
+        'word': '台灣',
         'post_type': 0,
         'order': 'desc',
         'sort': 'published',
+        'pos': False,
     }
 
     def get(self, request, *args, **kwargs):
         """GET method."""
         form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
+        return render(
+            request,
+            self.template_name,
+            {'form': form, 'boards': boards}
+        )
 
     def post(self, request, *args, **kwargs):
         """POST method."""
