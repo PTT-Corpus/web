@@ -370,3 +370,12 @@ pre[class*="language-"].line-numbers>code {
     padding-right: 0.8em;
     text-align: right;
 }
+
+#logout_button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}

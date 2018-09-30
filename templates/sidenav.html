@@ -1,14 +1,27 @@
 {% load static %}
+{% load account %}
+{% load socialaccount %}
 <nav class="topnav">
     <div class="nav-wrapper">
         <div class="col s12 right-align">
             <ul class="right">
+                {% if user.is_authenticated %}
+                <li>Welcome, {% user_display user %}</li>
+                    <li style="padding: 0 5px 0 5px"> | </li>
+                    <li>
+                        <form action="{% url 'account_logout' %}" method="post">
+                            {% csrf_token %}
+                            <button id="logout_button">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
                 <li>
                     <a class="modal-trigger" href="#reg-modal">Register</a>
                 </li>
                 <li>
                     <a class="modal-trigger" href="#login-modal">Login</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>
