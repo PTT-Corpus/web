@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views
 import core.views
 
 urlpatterns = [
@@ -25,6 +24,7 @@ urlpatterns = [
     # path(r'logout/', views.logout, name='logout'),
     path(r'accounts/', include('allauth.urls')),
     path(r'', core.views.index, name='index'),
+    path(r'api/', include('core.api_urls', namespace='api')),
     path(r'apidoc', core.views.apidoc, name='apidoc'),
     path(r'collocation', core.views.collocation, name='collocation'),
     path(r'concordance', core.views.ConcordanceFormView.as_view(), name='concordance'),

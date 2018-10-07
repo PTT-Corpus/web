@@ -121,7 +121,8 @@ class SegmentationFormView(View):
                           {'algo': algo, 'output': output})
         return render(request, self.template_name)
 
-    def _segcom(self, txt):
+    @staticmethod
+    def _segcom(txt):
         jraw = jieba.seg(txt, pos=True)
         jres, jpos = [], []
         for char, pos in jraw:

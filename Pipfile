@@ -25,10 +25,12 @@ jseg = "==0.0.4"
 ckip-segmenter = "==1.0.2"
 uWSGI = "==2.0.17.1"
 django-allauth = "*"
+djangorestframework = "*"
 
 [dev-packages]
 "flake8" = "*"
 "flake8-docstrings" = "*"
+httpie = "*"
 
 [requires]
 python_version = "3.7"
