@@ -89,7 +89,7 @@ class ConcordanceSerializer(serializers.Serializer):
         label='Part of Speech',
         required=False,
     )
-    windows_size = serializers.IntegerField(
+    window_size = serializers.IntegerField(
         label='Window Size',
         min_value=5,
         max_value=30,

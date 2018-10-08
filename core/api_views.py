@@ -46,7 +46,7 @@ class SegmentationView(generics.GenericAPIView):
                 output = _segcom(text)
             return Response({'algo': algo, 'output': output},
                             status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 
 class ConcordanceView(generics.GenericAPIView):
@@ -65,7 +65,7 @@ class ConcordanceView(generics.GenericAPIView):
             resp = requests.get(
                 os.environ.get('PTT_ENGINE') + 'query',
                 {k: v for k, v in serializer.validated_data.items() if v},
-                )
+            )
             data = resp.json()
             return Response({
                 'data': data,
@@ -73,4 +73,4 @@ class ConcordanceView(generics.GenericAPIView):
             },
                 status=status.HTTP_200_OK
             )
-        return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
