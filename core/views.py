@@ -2,7 +2,6 @@
 import os
 
 from django.shortcuts import render
-# from django.views.generic import TemplateView, FormView
 from django.views import View
 import requests
 from jseg import Jieba

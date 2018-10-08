@@ -2,16 +2,13 @@ import os
 import requests
 
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import generics
 
 from jseg import Jieba
 from ckip import CkipSegmenter
 
 from .serializers import SegmentationSerializer, ConcordanceSerializer
-from .forms import SegmentationForm, ConcordanceForm
 from .views import SegmentationFormView
 
 _segcom = SegmentationFormView._segcom
