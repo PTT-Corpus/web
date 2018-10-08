@@ -37,6 +37,21 @@ class SegmentationSerializer(serializers.Serializer):
         required=True,
     )
 
+    def create(self, validated_data):
+        """
+        Satisfy abstract methods requirement.
+        :param validated_data:
+        :return:
+        """
+
+    def update(self, instance, validated_data):
+        """
+        Satisfy abstract methods requirement.
+        :param instance:
+        :param validated_data:
+        :return:
+        """
+
 
 class ConcordanceSerializer(serializers.Serializer):
     word = serializers.CharField(
@@ -101,3 +116,17 @@ class ConcordanceSerializer(serializers.Serializer):
             )
         return validated_data
 
+    def create(self, validated_data):
+        """
+        Satisfy abstract methods requirement.
+        :param validated_data:
+        :return:
+        """
+
+    def update(self, instance, validated_data):
+        """
+        Satisfy abstract methods requirement.
+        :param instance:
+        :param validated_data:
+        :return:
+        """
