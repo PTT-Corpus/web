@@ -5,8 +5,8 @@ from . import api_views as views
 app_name = 'api'
 
 urlpatterns = [
-    re_path(r'^segment/$', views.segment, name='segment'),
-    re_path(r'^concordance/$', views.concordance, name='concordance'),
+    re_path(r'^segment/$', views.SegmentationView.as_view(), name='segment'),
+    re_path(r'^concordance/$', views.ConcordanceView.as_view(), name='concordance'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

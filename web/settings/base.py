@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'core',
     'material',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

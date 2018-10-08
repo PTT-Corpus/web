@@ -98,7 +98,7 @@ class ConcordanceForm(forms.Form):
         required=False,
     )
     size = forms.IntegerField(
-        label='Item per Page',
+        label='Items per Page',
         widget=forms.NumberInput(
             attrs={'type': 'range', 'min': 10, 'max': 100, 'step': 10}
         ),
