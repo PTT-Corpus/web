@@ -46,7 +46,7 @@ class SegmentationView(generics.GenericAPIView):
                 output = _segcom(text)
             return Response({'algo': algo, 'output': output},
                             status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ConcordanceView(generics.GenericAPIView):
@@ -73,4 +73,4 @@ class ConcordanceView(generics.GenericAPIView):
             },
                 status=status.HTTP_200_OK
             )
-        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
