@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-social-auth-app-django = "==2.1.0"
 mysqlclient = "==1.3.13"
 certifi = "==2018.4.16"
 chardet = "==3.0.4"
@@ -16,7 +15,6 @@ pytz = "==2018.5"
 requests-oauthlib = "==1.0.0"
 requests = "==2.19.1"
 six = "==1.11.0"
-social-auth-core = "==1.7.0"
 "urllib3" = "==1.23"
 Django = "==2.0.7"
 PyJWT = "==1.6.4"
@@ -26,6 +24,9 @@ ckip-segmenter = "==1.0.2"
 uWSGI = "==2.0.17.1"
 django-allauth = "*"
 djangorestframework = "*"
+python-memcached = "*"
+python-social-auth = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
 "flake8" = "*"
