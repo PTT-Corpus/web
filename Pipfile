@@ -26,6 +26,8 @@ django-allauth = "*"
 djangorestframework = "*"
 python-memcached = "*"
 python-social-auth = "*"
+django-rest-auth = "*"
+social-auth-core = "*"
 social-auth-app-django = "*"
 
 [dev-packages]

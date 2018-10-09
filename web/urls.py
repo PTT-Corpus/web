@@ -19,16 +19,17 @@ from django.urls import path, include
 import core.views
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
-    # path(r'login/', views.login, name='login'),
-    # path(r'logout/', views.logout, name='logout'),
-    path(r'accounts/', include('allauth.urls')),
-    path(r'', core.views.index, name='index'),
-    path(r'api/', include('core.api_urls', namespace='api')),
-    path(r'apidoc', core.views.apidoc, name='apidoc'),
-    path(r'collocation', core.views.collocation, name='collocation'),
-    path(r'concordance', core.views.ConcordanceFormView.as_view(), name='concordance'),
-    path(r'segmentation', core.views.SegmentationFormView.as_view(), name='segmentation'),
-    path(r'sentipol', core.views.sentipol, name='sentipol'),
-    path(r'wordcloud', core.views.wordcloud, name='wordcloud'),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+
+    path('api/v1/', include('core.api.urls', namespace='api')),
+
+    path('apidoc', core.views.apidoc, name='apidoc'),
+
+    path('', core.views.index, name='index'),
+    path('collocation', core.views.collocation, name='collocation'),
+    path('concordance', core.views.ConcordanceFormView.as_view(), name='concordance'),
+    path('segmentation', core.views.SegmentationFormView.as_view(), name='segmentation'),
+    path('sentipol', core.views.sentipol, name='sentipol'),
+    path('wordcloud', core.views.wordcloud, name='wordcloud'),
 ]
