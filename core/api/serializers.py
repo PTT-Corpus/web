@@ -58,6 +58,7 @@ class ConcordanceSerializer(serializers.Serializer):
         label='Query Word',
         max_length=255,
         required=True,
+        initial='台灣',
     )
     post_type = serializers.ChoiceField(
         label='Post Type',
@@ -72,10 +73,12 @@ class ConcordanceSerializer(serializers.Serializer):
     sort = serializers.ChoiceField(
         label='Sort',
         choices=SORT_CHOICES,
+        default=SORT_CHOICES[0][0],
     )
     order = serializers.ChoiceField(
         label='Order',
         choices=ORDER_CHOICES,
+        default=ORDER_CHOICES[0][0],
     )
     start = serializers.DateField(
         label='Start Date',
@@ -93,11 +96,14 @@ class ConcordanceSerializer(serializers.Serializer):
         label='Window Size',
         min_value=5,
         max_value=30,
+        default=10,
         initial=10,
     )
-    # page = serializers.HiddenField(
-    #     required=False
-    # )
+    page = serializers.IntegerField(
+        required=False,
+        default=0,
+        initial=0,
+    )
     size = serializers.IntegerField(
         label='Items per page',
         min_value=10,

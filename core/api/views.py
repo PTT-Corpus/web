@@ -1,16 +1,18 @@
 import os
 import requests
+import json
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
 from jseg import Jieba
 from ckip import CkipSegmenter
 
-from core.serializers import SegmentationSerializer, ConcordanceSerializer
+from core.api.serializers import SegmentationSerializer, ConcordanceSerializer
 from core.views import SegmentationFormView
 
 _segcom = SegmentationFormView._segcom
@@ -31,6 +33,7 @@ class ConcordanceView(generics.GenericAPIView):
     Return concordance lines for a given query.
     """
     serializer_class = ConcordanceSerializer
+    throttle_classes = (AnonRateThrottle, UserRateThrottle,)
 
     def post(self, request, format=None):
         serializer = ConcordanceSerializer(data=request.data)
@@ -39,13 +42,20 @@ class ConcordanceView(generics.GenericAPIView):
                 os.environ.get('PTT_ENGINE') + 'query',
                 {k: v for k, v in serializer.validated_data.items() if v},
             )
-            data = resp.json()
-            return Response({
-                'data': data,
-                'query': request.data,
-            },
-                status=status.HTTP_200_OK
-            )
+            try:
+                data = resp.json()
+            except json.JSONDecodeError:
+                return Response({
+                    'data:': None,
+                },
+                    status=status.HTTP_204_NO_CONTENT,
+                )
+            else:
+                return Response({
+                    'data': data,
+                },
+                    status=status.HTTP_200_OK
+                )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

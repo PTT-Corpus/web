@@ -1,4 +1,4 @@
-from django.urls import re_path, include, path
+from django.urls import include, path
 from rest_framework.urlpatterns import format_suffix_patterns
 from core.api import views as views
 from . import auth_views
