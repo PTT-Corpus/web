@@ -10,6 +10,12 @@
 
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous">
+
+    </script>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"
@@ -76,7 +82,8 @@
                 <div class="row facebook valign-wrapper" style="padding: 1em 0">
                     <div class="col s3"><i class="fa fa-facebook"></i></div>
                     <div class="col s9">
-                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Register with
+                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Register
+                            with
                             Facebook</a></div>
                 </div>
             </div>
@@ -148,6 +155,15 @@
         // console.log(modal);
         // console.log(instance_modal);
     });
+
+    $(document).ready(function() {
+        {% if messages %}
+        {% for message in messages %}
+        M.toast({html: '{{ message }}',
+        classes: 'rounded grey'});
+        {% endfor %}
+        {% endif %}
+    })
 </script>
 
 

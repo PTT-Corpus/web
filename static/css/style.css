@@ -26,10 +26,9 @@ footer {
     background-color: #e0e0e0;
 }
 
-main>.row {
+main > .row {
     margin: 0 40px;
 }
-
 
 header,
 main,
@@ -95,9 +94,6 @@ header {
     max-height: 90%;
 }
 
-
-
-
 /* social login */
 
 #login-modal .modal-content {
@@ -153,8 +149,8 @@ header {
 }
 
 #login-modal, #reg-modal {
-        width: 30%;
-    }
+    width: 30%;
+}
 
 @media only screen and (max-width: 992px) {
     header,
@@ -163,7 +159,7 @@ header {
         padding-left: 0;
     }
 
-    main>.row {
+    main > .row {
         margin: 0 10px;
     }
 
@@ -176,10 +172,8 @@ header {
     }
 }
 
-
 /* PrismJS 1.15.0
 https://prismjs.com/download.html#themes=prism&languages=python&plugins=line-numbers */
-
 
 /**
  * prism.js default theme for JavaScript, CSS and HTML
@@ -233,7 +227,6 @@ code[class*="language-"] ::selection {
     }
 }
 
-
 /* Code blocks */
 
 pre[class*="language-"] {
@@ -242,15 +235,14 @@ pre[class*="language-"] {
     overflow: auto;
 }
 
-:not(pre)>code[class*="language-"],
+:not(pre) > code[class*="language-"],
 pre[class*="language-"] {
     background: #f5f2f0;
 }
 
-
 /* Inline code */
 
-:not(pre)>code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
     padding: .1em;
     border-radius: .3em;
     white-space: normal;
@@ -335,7 +327,7 @@ pre[class*="language-"].line-numbers {
     counter-reset: linenumber;
 }
 
-pre[class*="language-"].line-numbers>code {
+pre[class*="language-"].line-numbers > code {
     position: relative;
     white-space: inherit;
 }
@@ -357,13 +349,13 @@ pre[class*="language-"].line-numbers>code {
     user-select: none;
 }
 
-.line-numbers-rows>span {
+.line-numbers-rows > span {
     pointer-events: none;
     display: block;
     counter-increment: linenumber;
 }
 
-.line-numbers-rows>span:before {
+.line-numbers-rows > span:before {
     content: counter(linenumber);
     color: #999;
     display: block;
@@ -378,4 +370,11 @@ pre[class*="language-"].line-numbers>code {
     padding: 0;
     font: inherit;
     cursor: pointer;
+}
+
+#toast-container {
+    top: 5% ;
+    right: 50% !important;
+    bottom: auto !important;
+    left: auto !important;
 }
