@@ -1,0 +1,53 @@
+{% extends 'rest_framework/base.html' %}
+{% load static %}
+{% block style %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+{% endblock style %}
+
+{#{% block bootstrap_theme %}#}
+{#<link rel="stylesheet" href="{% static 'css/rest_framework/bootstrap.min.css' %}">#}
+{#{% endblock %}#}
+{% block branding %}
+    <a class="navbar-brand" href="{% url 'api:index' %}">PTT Corp API</a>
+{% endblock branding %}
+
+{% block userlinks %}
+    {% if user.is_authenticated %}
+        {#            <a id="logoutLink" href="{% url 'api:logout' %}">Logout</a>#}
+        <form class="form-inline" id="logoutForm" action="{% url 'api:logout' %}" method="post">
+            {% csrf_token %}
+            <button style="padding: 15px;" class="btn btn-link">Logout</button>
+            {#            <li class="navbar-link">#}
+            {#                <a style="padding: 50px; overflow: visible;" href="#" onclick="$('#logoutForm').submit()">Logout</a>#}
+            {#            </li>#}
+        </form>
+    {% else %}
+        <li class="navbar-link">
+            <a href="{% url 'api:fb_login' %}"><i class="fab fa-facebook fa-lg"></i></a>
+        </li>
+        <li class="navbar-link">
+            <a href="{% url 'api:github_login' %}"><i class="fab fa-github fa-lg"></i></a>
+        </li>
+        <li class="navbar-link">
+            <a href="{% url 'api:google_login' %}"><i class="fab fa-google fa-lg"></i></a>
+        </li>
+    {% endif %}
+{% endblock userlinks %}
+
+{#{% block script %}#}
+{#    {{ block.super }}#}
+{#    <script>#}
+{#        $(document).ready(function () {#}
+{#            $(function () {#}
+{#                $('#logoutLink').onclick(function (e) {#}
+{#                    e.preventDefault();#}
+{#                    $.post(this.href),function (data) {#}
+{#                    }#}
+{#                })#}
+{##}
+{#            })#}
+{#        })#}
+{#    </script>#}
+{#{% endblock script %}#}

@@ -373,8 +373,30 @@ pre[class*="language-"].line-numbers > code {
 }
 
 #toast-container {
-    top: 5% ;
+    top: 5%;
     right: 50% !important;
     bottom: auto !important;
     left: auto !important;
+}
+
+.inline {
+    display: inline;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1em;
+    font-family: serif;
+}
+
+.link-button:focus {
+    outline: none;
+}
+
+.link-button:active {
+    color: red;
 }
