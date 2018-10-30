@@ -38,7 +38,7 @@
     <div class="modal-content center-align">
         <img src="{% static 'images/logo2.jpg' %}"/>
         <div class="section">
-            <h4>Login</h4>
+            <h4>Login or Register</h4>
             <div class="section">
 
                 <div class="row github valign-wrapper" style="padding: 1em 0">
@@ -51,45 +51,45 @@
                     <div class="col s9">
                         <a style="color: white;" href="{% provider_login_url 'google' %}">Sign in with Google</a></div>
                 </div>
-                <div class="row facebook valign-wrapper" style="padding: 1em 0">
-                    <div class="col s3"><i class="fa fa-facebook"></i></div>
-                    <div class="col s9">
-                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Sign in with
-                            Facebook</a></div>
-                </div>
+{#                <div class="row facebook valign-wrapper" style="padding: 1em 0">#}
+{#                    <div class="col s3"><i class="fa fa-facebook"></i></div>#}
+{#                    <div class="col s9">#}
+{#                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Sign in with#}
+{#                            Facebook</a></div>#}
+{#                </div>#}
             </div>
         </div>
     </div>
 </div>
 
-<!-- Register Modal -->
-<div id="reg-modal" class="modal">
-    <div class="modal-content center-align">
-        <img src="{% static 'images/logo2.jpg' %}"/>
-        <div class="section">
-            <h4>Register</h4>
-            <div class="section">
-                <div class="row github valign-wrapper" style="padding: 1em 0">
-                    <div class="col s3"><i class="fa fa-github"></i></div>
-                    <div class="col s9">
-                        <a style="color: white;" href="{% provider_login_url 'github' %}">Register with Github</a></div>
-                </div>
-                <div class="row google valign-wrapper" style="padding: 1em 0">
-                    <div class="col s3"><i class="fa fa-google"></i></div>
-                    <div class="col s9">
-                        <a style="color: white;" href="{% provider_login_url 'google' %}">Register with Google</a></div>
-                </div>
-                <div class="row facebook valign-wrapper" style="padding: 1em 0">
-                    <div class="col s3"><i class="fa fa-facebook"></i></div>
-                    <div class="col s9">
-                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Register
-                            with
-                            Facebook</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{#<!-- Register Modal -->#}
+{#<div id="reg-modal" class="modal">#}
+{#    <div class="modal-content center-align">#}
+{#        <img src="{% static 'images/logo2.jpg' %}"/>#}
+{#        <div class="section">#}
+{#            <h4>Register</h4>#}
+{#            <div class="section">#}
+{#                <div class="row github valign-wrapper" style="padding: 1em 0">#}
+{#                    <div class="col s3"><i class="fa fa-github"></i></div>#}
+{#                    <div class="col s9">#}
+{#                        <a style="color: white;" href="{% provider_login_url 'github' %}">Register with Github</a></div>#}
+{#                </div>#}
+{#                <div class="row google valign-wrapper" style="padding: 1em 0">#}
+{#                    <div class="col s3"><i class="fa fa-google"></i></div>#}
+{#                    <div class="col s9">#}
+{#                        <a style="color: white;" href="{% provider_login_url 'google' %}">Register with Google</a></div>#}
+{#                </div>#}
+{#                <div class="row facebook valign-wrapper" style="padding: 1em 0">#}
+{#                    <div class="col s3"><i class="fa fa-facebook"></i></div>#}
+{#                    <div class="col s9">#}
+{#                        <a style="color: white;" href="{% provider_login_url 'facebook' method="oauth2" %}">Register#}
+{#                            with#}
+{#                            Facebook</a></div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 <header>
     {% include 'sidenav.html' %}
 </header>
