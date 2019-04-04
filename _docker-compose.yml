@@ -9,7 +9,7 @@ services:
     env_file:
       - mariadb.env
   django:
-    image: pttweb:0.0.1
+    image: pttweb:0.0.0
     restart: always
     ports:
       - 9898:8888

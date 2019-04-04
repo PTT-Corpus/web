@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "95b44a923eee8d3bb71622a32e9b556441ddb19e6c6e8c1c55bd3380d3452506"
+            "sha256": "2a2106b5d080381c40b3b518f3bd1d6a53473b0695509a5965296a5029862285"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -197,12 +197,22 @@
             "index": "pypi",
             "version": "==1.11.0"
         },
+        "social-auth-app-django": {
+            "hashes": [
+                "sha256:25295c94375d28062f65d0b3cd4b7e304c7e2fb7bac1ec51b40650a654c352f4",
+                "sha256:4e34d86709bfa51fd2938307e00f12f4e1dfef8a8ed6bfbfe9aeb4e69d57148f",
+                "sha256:b7c28bef8fbd11ff357ddd885cb219cdb55565e01109c709dd28569e0bfb0dea"
+            ],
+            "index": "pypi",
+            "version": "==2.1.0"
+        },
         "social-auth-core": {
             "hashes": [
                 "sha256:273eb5bbeded3cfc178ca7e14f0641165df03133a2f787a6e412f782489d56ba",
                 "sha256:7b393754ab75f6e5176568554f4f7b5cd9e4cb6dab23d9614e5c9e1425f3fcf9",
                 "sha256:eb0d0e29d0cfa729cd52437314d4aeb83806c4d6e7824cbe988195b6a4b85163"
             ],
+            "index": "pypi",
             "version": "==1.7.0"
         },
         "urllib3": {
@@ -293,11 +303,11 @@
         },
         "pydocstyle": {
             "hashes": [
-                "sha256:08a870edc94508264ed90510db466c6357c7192e0e866561d740624a8fc7d90c",
-                "sha256:4d5bcde961107873bae621f3d580c3e35a426d3687ffc6f8fb356f6628da5a97",
-                "sha256:af9fcccb303899b83bec82dc9a1d56c60fc369973223a5e80c3dfa9bdf984405"
+                "sha256:2258f9b0df68b97bf3a6c29003edc5238ff8879f1efb6f1999988d934e432bd8",
+                "sha256:5741c85e408f9e0ddf873611085e819b809fca90b619f5fd7f34bd4959da3dd4",
+                "sha256:ed79d4ec5e92655eccc21eb0c6cf512e69512b4a97d215ace46d17e4990f2039"
             ],
-            "version": "==2.1.1"
+            "version": "==3.0.0"
         },
         "pyflakes": {
             "hashes": [
