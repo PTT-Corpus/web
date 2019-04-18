@@ -49,6 +49,7 @@ class ConcordanceFormView(View):
     def get(self, request, *args, **kwargs):
         """GET method."""
         form = self.form_class(initial=self.initial)
+        print(boards)
         return render(
             request,
             self.template_name,
@@ -64,6 +65,8 @@ class ConcordanceFormView(View):
                 {k: v for k, v in form.cleaned_data.items() if v},
             )
             data = resp.json()
+            print(data)
+
             return render(
                 request,
                 'concordance_result.html',

@@ -147,7 +147,7 @@ Concordance
               <span>{{ d.novote }}</span>
             </div>
             <div class="col s1 grey lighten-3">
-              <span><a href="https://www.ptt.cc/bbs/{{ d.board }}/{{ d.id }}.html" target="_blank">
+              <span><a href="https://www.ptt.cc/bbs/{{ d.board }}/{% if d.post_id%}{{ d.post_id }}{% else %}{{d.id}}{% endif %}.html" target="_blank">
                 <i class="material-icons">link</i>
               </a>
               </span>
