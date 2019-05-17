@@ -9,13 +9,18 @@ services:
     env_file:
       - mariadb.env
   django:
-    image: pttweb:0.0.1
+    image: pttweb:0.0.2
     restart: always
     ports:
       - 9898:8888
     env_file:
       - pttweb.env
     volumes:
-      - ./static_pttweb:/app/static_pttweb
+      - .:/app
+    command: >
+      sh -c "
+      python manage.py migrate --no-input
+      && python manage.py collectstatic --no-input
+      && uwsgi --master --http 0.0.0.0:8888 --module web.wsgi --static-map /static_pttweb=static_pttweb --process 4 --manage-script-name --mount=/pttcorp=web/wsgi.py"
     depends_on:
     - mariadb

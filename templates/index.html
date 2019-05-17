@@ -1,44 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block main_content%}
 <div id="index" class="row section">
 	
-    <pre style="line-height: 15px; font-weight: 800">
- _____     ______   ______   
-/\  _ `\  /\__  _\ /\__  _\  
-\ \ \L\ \ \/_/\ \/ \/_/\ \/  
- \ \ ,__/    \ \ \    \ \ \  
-  \ \ \/      \ \ \    \ \ \ 
-   \ \_\       \ \_\    \ \_\
-    \/_/        \/_/     \/_/
-                           
-                           
-         _____                                               
-        /\  _ `\                                             
-        \ \ \/\_\    ___    _ ___  _____    __  __    ____  
-         \ \ \/_/_  / __`\ /\`'__\/\  __`\ /\ \/\ \  /',__\ 
-          \ \ \L\ \/\ \L\ \\ \ \/ \ \ \L\ \\ \ \_\ \/\__, `\
-           \ \____/\ \____/ \ \_\  \ \ ,__/ \ \____/\/\____/
-            \/___/  \/___/   \/_/   \ \ \/   \/___/  \/___/ 
-                                     \ \_\                  
-                                      \/_/                  
-    </pre>
-
     <div class="col s12 m12 l9">
         <div class="row section">
-            <div class="col s12">
-                <h5>What is PTT?</h5>
-                <p class="">
-                    PTT(批踢踢) is a terminal-based bulletin board system (BBS) based in Taiwan, which contains over 20,000 discussion boards with more than 1.5 million registered users, and over 10,000 articles are posted everyday.
-                </p>
-            </div>
-            <div class="col s12">
-                <h5>What is PTT Corpus?</h5>
-                <p>
-                    PTT Corpus is the first interactive interface which exploits PTT data for users to query words, make concordance, compare numbers of positive and negative comments of posts, etc.
-                </p>
-            </div>
 
+            <div class="col s12">
+                <img src="{% static 'images/ptt_corpus.svg' %}">
+                <h5>PTT是什麼?</h5>
+                <p class="">
+                    PTT（批踢踢）是台灣電子佈告欄（BBS）系統，目前的註冊總人數約150萬人，並且有超過2萬個討論看版，每天有超過1萬篇文章發佈在PTT上。
+                </p>
+            </div>
+            <div class="col s12">
+                <h5>PTT語料庫是什麼?</h5>
+                <p>
+                    PTT語料庫是第一個提供搜尋關鍵詞、中文斷詞比較、語境共現(Concordance)...等功能的網路UI介面。
+                </p>
+            </div>
+            <!--
             <div class="col s12">
                 <h5>What is the purpose of PTT Corpus?</h5>
                     <p>
@@ -51,8 +33,9 @@
                     Everyday.
                 </p>
             </div>
+        -->
         </div>
-
+        <!--
         <div class="row">
             <div class="col s12">
                 <h3>Data</h3>
@@ -100,6 +83,8 @@
                     </tbody>
                 </table>
             </div>
+             -->
             <div class="col s3"></div>
         </div>
+
 {% endblock main_content %}

@@ -10,11 +10,11 @@ em {
   font-weight: bold;
 }
 .info {
-  font-size: 15px;
+  font-size: 12px;
   margin-bottom: 0;
 }
 .info .material-icons {
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .info > .col {
@@ -71,7 +71,7 @@ Concordance
 
 {% block main_content %}
 
-<h5>Your query</h5>
+<h5>你的搜尋</h5>
 <div class="row grey lighten-4">
   <div class="col s4">
     <p><span class="badg">Query word</span> {{ query.word }}</p>
@@ -92,7 +92,7 @@ Concordance
     <p><span class="badg">Date interval</span>{{ query.start }}-{{ query.end }}</p>
   </div>
 </div>
-<h5>Total results: {{ data.total }}</h5>
+<h5>結果總筆數: {{ data.total }}</h5>
 
  <table class="highlight">
   <thead>
@@ -129,24 +129,32 @@ Concordance
             </div>
           </div>
           <div class="row info">
-            <div class="col s7">
+
+            <div class="col m4">
             </div>
-            <div class="col s1 grey lighten-2">
-              <span>{{ d.board }}</span>
+            <div class="col m4 s12 grey lighten-2">
+              <span>[{{ d.board }}] {{ d.published }}</span>
             </div>
-            <div class="col s1 grey lighten-3">
-              <i class="material-icons">thumb_up</i>
-              <span>{{ d.upvote }}</span>
-            </div>
-            <div class="col s1 grey lighten-3">
-              <i class="material-icons">thumb_down</i>
-              <span>{{ d.downvote }}</span>
-            </div>
-            <div class="col s1 grey lighten-3">
-              <i class="material-icons">arrow_forward</i>
-              <span>{{ d.novote }}</span>
-            </div>
-            <div class="col s1 grey lighten-3">
+
+            {% if d.type == None %}
+              <div class="col m1 s3 grey lighten-3">
+                <i class="material-icons">thumb_up</i>
+                <span>{{ d.upvote }}</span>
+              </div>
+              <div class="col m1 s3 grey lighten-3">
+                <i class="material-icons">thumb_down</i>
+                <span>{{ d.downvote }}</span>
+              </div>
+              <div class="col m1 s3 grey lighten-3">
+                <i class="material-icons">arrow_forward</i>
+                <span>{{ d.novote }}</span>
+              </div>
+            {% else %}
+              <div class="col m3 s9 grey lighten-3 right-align">
+                <span>{{ d.type }}</span>
+              </div>
+            {% endif %}
+            <div class="col m1 s3 grey lighten-3">
               <span><a href="https://www.ptt.cc/bbs/{{ d.board }}/{% if d.post_id%}{{ d.post_id }}{% else %}{{d.id}}{% endif %}.html" target="_blank">
                 <i class="material-icons">link</i>
               </a>
@@ -188,5 +196,7 @@ function paginator(page) {
   document.getElementById("{{ form.page.auto_id }}").value = page;
   document.getElementById("_form").submit();
 };
+var d = {{data}};
+console.log(d);
 </script>
 {% endblock extra_js %}

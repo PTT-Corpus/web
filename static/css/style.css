@@ -400,3 +400,7 @@ pre[class*="language-"].line-numbers > code {
 .link-button:active {
     color: red;
 }
+
+textarea.materialize-textarea#id_text {
+    overflow-y: auto;
+}
