@@ -1,0 +1,4 @@
+include *.pyx
+include *.pxd
+recursive-include src *.pyx *.pxd
+recursive-include CWB *.pyx *.pxd

@@ -12,9 +12,9 @@ from .forms import (
     ConcordanceForm,
 )
 from .data import boards
-
-jieba = Jieba()
-ckip = CkipSegmenter()
+from .concordance import get_concordance
+# jieba = Jieba()
+# ckip = CkipSegmenter()
 
 
 def index(request):
@@ -53,19 +53,64 @@ class ConcordanceFormView(View):
         return render(
             request,
             self.template_name,
-            {'form': form, 'boards': boards}
+            {'form': form}
+            # {'form': form, 'boards': boards}
         )
 
     def post(self, request, *args, **kwargs):
         """POST method."""
+        data = dict()
+
         form = self.form_class(request.POST)
         if form.is_valid():
-            resp = requests.get(
-                os.environ['PTT_ENGINE'] + 'query',
-                {k: v for k, v in form.cleaned_data.items() if v},
+            # 原本是要去 Elasticsearch 問
+            # resp = requests.get(
+            #     os.environ['PTT_ENGINE'] + 'query',
+            #     {k: v for k, v in form.cleaned_data.items() if v},
+            # )
+
+            print(form.cleaned_data)
+
+            # size 指的是一頁要顯示幾筆
+            data['size'] = form.cleaned_data['size']
+
+            if form.cleaned_data['page'] is None:
+                data['page'] = 0
+            else:
+                data['page'] = int(form.cleaned_data['page'])
+
+            # 根據 size 和 page 計算出這一頁要顯示哪幾個concordance line
+            start_index = data['size'] * data['page']
+            end_index = data['size'] * (data['page'] + 1) - 1
+
+            result, total_hits = get_concordance(
+                query=form.cleaned_data['word'],
+                corpus_name=form.cleaned_data['boards'],
+                text_type=form.cleaned_data['post_type'],
+                show_pos=form.cleaned_data['pos'],
+                start_index=start_index,
+                end_index=end_index
             )
-            data = resp.json()
-            print(data)
+
+            # 總共有幾個concordance line
+            data['total'] = total_hits
+
+            
+
+            keys_of_result_dict = list(result.keys())
+            target_concordance_key = keys_of_result_dict[start_index:end_index]
+
+            data['concordance'] = list()
+
+            for i in target_concordance_key:
+                df = result[i]
+                data['concordance'].append({
+                    'left': ' '.join(df.loc[df['offset'] < 0, 'word'].tolist()),
+                    'key': ' '.join(df.loc[df['offset'] == 0, 'word'].tolist()),
+                    'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
+                })
+
+            print(data['concordance'])
 
             return render(
                 request,

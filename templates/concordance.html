@@ -25,13 +25,15 @@ Concordance
       <br>
       <br>
     {% endpart %}
+    {% comment %}
     {% part form.boards %}
       <label>{{ form.boards.label }}</label>
       <div class="chips chips-autocomplete">
         <input id="_boards" class="input">
       </div>
     {% endpart %}
-  {% endform %}
+    {% endcomment %}
+    {% endform %}
   <div class="row">
     <div class="col s12 m12">
       <button type="submit" name="submit" class="btn waves-effect waves-light valign-wrapper blue-grey lighten-3" style="width:100%">Submit</button>
@@ -49,6 +51,7 @@ Concordance
 		var datepicker_elm = document.querySelectorAll('.datepicker');
     var datepicker_instances = M.Datepicker.init(datepicker_elm, {format: 'yyyy-mm-dd'});
 	});
+/*
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.chips');
     var boards = {{ boards|safe }};
@@ -80,6 +83,7 @@ Concordance
     document.getElementById("{{ form.boards.auto_id }}").value = tmp;
     console.log(document.getElementById("{{ form.boards.auto_id }}").value);
   };
+  */
 	</script>
 {% endblock extra_js %}
 

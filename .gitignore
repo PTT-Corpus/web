@@ -209,3 +209,6 @@ $RECYCLE.BIN/
 pttweb.env
 static_pttweb
 pttweb.db
+cwb_data/
+cwb_registry/
+vrt_data/

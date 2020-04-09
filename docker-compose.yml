@@ -1,26 +1,33 @@
 version: '3'
 
 services:
-  mariadb:
-    image: mariadb
-    restart: always
-    volumes:
-      - ./maria:/etc/mysql/
-    env_file:
-      - mariadb.env
+  # mariadb:
+  #   image: mariadb
+  #   restart: always
+  #   volumes:
+  #     - ./maria:/etc/mysql/
+  #   env_file:
+  #     - mariadb.env
   django:
-    image: pttweb:0.0.2
+    build: .
+    image: pttweb:1.0
     restart: always
     ports:
       - 9898:8888
     env_file:
       - pttweb.env
-    volumes:
-      - .:/app
     command: >
       sh -c "
       python manage.py migrate --no-input
       && python manage.py collectstatic --no-input
       && uwsgi --master --http 0.0.0.0:8888 --module web.wsgi --static-map /static_pttweb=static_pttweb --process 4 --manage-script-name --mount=/pttcorp=web/wsgi.py"
-    depends_on:
-    - mariadb
+
+    volumes:
+    - ./vrt_data:/app/cwb/vrt
+    - ./cwb_registry:/app/cwb/registry
+    - ./cwb_data:/app/cwb/data
+    - ./scripts:/app/scripts
+    - ./core:/app/core
+    - ./templates:/app/templates
+    # depends_on:
+    # - mariadb

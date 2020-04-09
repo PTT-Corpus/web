@@ -1,7 +1,7 @@
 """Core app forms."""
 from django import forms
 from material import Layout, Row, Column, Span
-
+from .data import boards as b
 
 class SegmentationForm(forms.Form):
     """Segmentation form."""
@@ -45,20 +45,28 @@ class ConcordanceForm(forms.Form):
     post_type = forms.CharField(
         label='Post Type',
         widget=forms.RadioSelect(choices=(
-            (0, "Posts"),
-            (1, "Comments"),
+            (0, "Post"),
+            (1, "Comment"),
+            (2, "Title"),
             (None, "All"),
         )),
         required=False,
     )
+
     boards = forms.CharField(
         label='Boards',
-        widget=forms.HiddenInput(
-            attrs={'type': 'hidden'},
-        ),
-        initial='Gossiping,joke',
-        required=False,
+        widget=forms.Select(
+            choices=b
+        )
     )
+    # boards = forms.CharField(
+    #    label='Boards',
+    #    widget=forms.HiddenInput(
+    #        attrs={'type': 'hidden'},
+    #    ),
+    #    initial='LGBT_SEX',
+    #    required=False,
+    #)
     sort = forms.CharField(
         label='Sort',
         widget=forms.RadioSelect(choices=(

@@ -102,29 +102,29 @@ Concordance
   </thead>
 
   <tbody>
-    {% for d in data.data %}
+    {% for d in data.concordance %}
       <tr>
         <td style="padding-bottom: 0">
           <div class="row" style="margin-bottom: 1em">
             <div class="col s5 right-align">
                 {% if query.pos %}
-                  {{ d.concordance.0|pos }}
+                  {{ d.left|pos }}
                 {% else %}
-                  {{ d.concordance.0 }}
+                  {{ d.left }}
                 {% endif %}
             </div>
             <div class="col s1 center-align">
               {% if query.pos %}
-                  {{ d.concordance.1|safe|pos }}
+                  {{ d.key|safe|pos }}
                 {% else %}
-                  {{ d.concordance.1|safe }}
+                  {{ d.key|safe }}
                 {% endif %}
             </div>
             <div class="col s6 left-align">
               {% if query.pos %}
-                  {{ d.concordance.2|pos }}
+                  {{ d.right|pos }}
                 {% else %}
-                  {{ d.concordance.2 }}
+                  {{ d.right }}
                 {% endif %}
             </div>
           </div>
@@ -164,9 +164,11 @@ Concordance
         </td>
     </tr>
     {% endfor %}
+
   </tbody>
 </table>
 <br>
+
 {% paginator as pages %}
 {% paging_prev as pp %}
 {% paging_next as pg %}
@@ -183,6 +185,7 @@ Concordance
     <a href="javascript:;" onclick="paginator({{ pg }})"><i class="material-icons">chevron_right</i></a>
   </li>
 </ul>
+
 
 <form method="post" class="hide" id="_form">
   {% csrf_token %}

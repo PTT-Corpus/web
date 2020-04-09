@@ -7,3 +7,4 @@ Dockerfile
 docker-compose.yml
 pttweb.db
 static_pttweb
+vrt_data/
