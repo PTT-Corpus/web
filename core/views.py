@@ -123,7 +123,7 @@ class ConcordanceFormView(View):
                         'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
                     })
 
-            print(data['concordance'])
+            # print(data['concordance'])
 
             return render(
                 request,

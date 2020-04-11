@@ -53,13 +53,13 @@ def get_concordance(
 
     total_hits = concordance.df_node.shape[0]
 
-    print(f"start_ix: {start_index}, end_ix: {end_index}")
-    print("concordance.meta")
-    print(concordance.meta)
-    print("concordance.meta.index[start_index:end_index]")
-    print(concordance.meta.index[start_index:end_index])
-    print("result")
-    print(result)
+    # print(f"start_ix: {start_index}, end_ix: {end_index}")
+    # print("concordance.meta")
+    # print(concordance.meta)
+    # print("concordance.meta.index[start_index:end_index]")
+    # print(concordance.meta.index[start_index:end_index])
+    # print("result")
+    # print(result)
     return result, total_hits
 
 

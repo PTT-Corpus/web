@@ -10,7 +10,9 @@ Concordance
 <form method="POST">
   {% csrf_token %}
   {% form form=form %}
+  {% comment %}
     {% part form.pos %}
+
       <label>{{ form.pos.label }}</label> 
       <br>
       <br>
@@ -25,7 +27,7 @@ Concordance
       <br>
       <br>
     {% endpart %}
-    {% comment %}
+
     {% part form.boards %}
       <label>{{ form.boards.label }}</label>
       <div class="chips chips-autocomplete">

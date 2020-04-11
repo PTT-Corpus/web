@@ -40,21 +40,22 @@ class ConcordanceForm(forms.Form):
 
     word = forms.CharField(
         max_length=255,
-        label='Query Word',
+        label='Query',
+        help_text='可使用CQL查詢或一般查詢'
     )
     post_type = forms.CharField(
-        label='Post Type',
+        label='搜尋對象',
         widget=forms.RadioSelect(choices=(
-            (0, "Post"),
-            (1, "Comment"),
-            (2, "Title"),
-            (None, "All"),
+            (0, "只找貼文內容"),
+            (1, "只找回覆"),
+            (2, "只找標題"),
+            (None, "找全部"),
         )),
         required=False,
     )
 
     boards = forms.CharField(
-        label='Boards',
+        label='Board',
         widget=forms.Select(
             choices=b
         )
@@ -92,12 +93,12 @@ class ConcordanceForm(forms.Form):
     )
     end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
-        label='Part of Speech',
+        label='顯示詞性',
         widget=forms.CheckboxInput(),
         required=False,
     )
     window_size = forms.IntegerField(
-        label='Window Size',
+        label='視窗大小',
         widget=forms.NumberInput(attrs={'type': 'range', 'min': 5, 'max': 30}),
         initial=10,
     )
@@ -106,7 +107,7 @@ class ConcordanceForm(forms.Form):
         required=False,
     )
     size = forms.IntegerField(
-        label='Items per Page',
+        label='每頁顯示筆數',
         widget=forms.NumberInput(
             attrs={'type': 'range', 'min': 10, 'max': 100, 'step': 10}
         ),
@@ -120,8 +121,8 @@ class ConcordanceForm(forms.Form):
                 'word',
                 'boards',
                 Row(
-                    Span(5, 'post_type'),
-                    Span(5, 'pos')
+                    Span(6, 'post_type'),
+                    Span(6, 'pos')
                     # Span(4, 'sort'),
                     # Span(4, 'order'),
                 ),
