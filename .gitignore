@@ -212,3 +212,4 @@ pttweb.db
 cwb_data/
 cwb_registry/
 vrt_data/
+mongo_data/

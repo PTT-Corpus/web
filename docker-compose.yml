@@ -1,13 +1,26 @@
 version: '3'
 
 services:
-  # mariadb:
-  #   image: mariadb
-  #   restart: always
-  #   volumes:
-  #     - ./maria:/etc/mysql/
-  #   env_file:
-  #     - mariadb.env
+        # mongo:
+        #   image: mongo
+        #   restart: always
+        #   environment:
+        #     MONGO_INITDB_ROOT_USERNAME: root
+        #     MONGO_INITDB_ROOT_PASSWORD: example
+        #   ports:  
+        #     - 27017:27017
+        #   volumes:
+        #   - ./mongo_data:/data/db
+
+        # mongo-express:
+        #   image: mongo-express
+        #   restart: always
+        #   ports:
+        #     - 8081:8081
+        #   environment:
+        #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+        #     ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
   django:
     build: .
     image: pttweb:1.0
@@ -29,5 +42,7 @@ services:
     - ./scripts:/app/scripts
     - ./core:/app/core
     - ./templates:/app/templates
-    # depends_on:
-    # - mariadb
+    
+      # depends_on:
+      # - mongo
+      # - mongo-express

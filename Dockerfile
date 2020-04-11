@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update
 RUN apt-get install mercurial bison flex libwww-perl subversion libpcre3 libpcre3-dev libgtk2.0-dev -y
 # RUN pip install --upgrade pip
-ADD requirements.txt /tmp
+# ADD requirements.txt /tmp
 # ADD Pipfile /tmp
 # ADD Pipfile.lock /tmp
 

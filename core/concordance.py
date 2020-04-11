@@ -10,9 +10,10 @@ def get_concordance(
     corpus_name=None,
     text_type=None,
     show_pos=False,
+    window_size=10,
     start_index=0,
     end_index=0):
-
+    print(f"show_pos: {show_pos}")
     corpus = Corpus(
         corpus_name=corpus_name.upper(),
         registry_path="/app/cwb/registry"
@@ -38,29 +39,33 @@ def get_concordance(
 
     corpus.query(
         query,
-        context=10,
+        context=window_size,
     )
 
-    # 是否顯示 pos tag
+    # 是否顯示 pos tag, 並選擇要顯示的row
+    concordance = corpus.concordance()
     if show_pos:
-        concordance = corpus.concordance(p_show=['pos'])
+        matches_index_range = concordance.meta.index[start_index:end_index]
+        result = concordance.lines(matches=matches_index_range, p_show=['pos'])
     else:
-        concordance = corpus.concordance()
+        matches_index_range = concordance.meta.index[start_index:end_index]
+        result = concordance.lines(matches=matches_index_range)
 
     total_hits = concordance.df_node.shape[0]
 
-    # 選擇要顯示的row
-    
-
-
-    result = concordance.lines()
-
+    print(f"start_ix: {start_index}, end_ix: {end_index}")
+    print("concordance.meta")
+    print(concordance.meta)
+    print("concordance.meta.index[start_index:end_index]")
+    print(concordance.meta.index[start_index:end_index])
+    print("result")
+    print(result)
     return result, total_hits
 
 
 def lines(self, matches=None, p_show=[], order='first', cut_off=100):
     """ creates concordance lines from self.df_node """
-
+    print("xxxx")
     # take appropriate sub-set of matches
     topic_matches = set(self.df_node.index.droplevel('matchend'))
 

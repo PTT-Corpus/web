@@ -41,9 +41,11 @@ class ConcordanceFormView(View):
     initial = {
         'word': '台灣',
         'post_type': 0,
-        'order': 'desc',
-        'sort': 'published',
+         # 'order': 'desc',
+         # 'sort': 'published',
         'pos': False,
+        'window_size': 10,
+        'size': 50,
     }
 
     def get(self, request, *args, **kwargs):
@@ -70,7 +72,8 @@ class ConcordanceFormView(View):
             # )
 
             print(form.cleaned_data)
-
+            show_pos = request.POST.get('pos', False)
+            
             # size 指的是一頁要顯示幾筆
             data['size'] = form.cleaned_data['size']
 
@@ -79,15 +82,18 @@ class ConcordanceFormView(View):
             else:
                 data['page'] = int(form.cleaned_data['page'])
 
+            data['page_times_size'] = data['size'] * data['page']
+
             # 根據 size 和 page 計算出這一頁要顯示哪幾個concordance line
             start_index = data['size'] * data['page']
-            end_index = data['size'] * (data['page'] + 1) - 1
+            end_index = data['size'] * (data['page'] + 1)
 
             result, total_hits = get_concordance(
                 query=form.cleaned_data['word'],
                 corpus_name=form.cleaned_data['boards'],
                 text_type=form.cleaned_data['post_type'],
-                show_pos=form.cleaned_data['pos'],
+                show_pos=show_pos,
+                window_size=form.cleaned_data['window_size'],
                 start_index=start_index,
                 end_index=end_index
             )
@@ -95,20 +101,27 @@ class ConcordanceFormView(View):
             # 總共有幾個concordance line
             data['total'] = total_hits
 
-            
-
-            keys_of_result_dict = list(result.keys())
-            target_concordance_key = keys_of_result_dict[start_index:end_index]
+            # keys_of_result_dict = list(result.keys())
+            # target_concordance_key = keys_of_result_dict[start_index:end_index]
 
             data['concordance'] = list()
 
-            for i in target_concordance_key:
-                df = result[i]
-                data['concordance'].append({
-                    'left': ' '.join(df.loc[df['offset'] < 0, 'word'].tolist()),
-                    'key': ' '.join(df.loc[df['offset'] == 0, 'word'].tolist()),
-                    'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
-                })
+            # for i in target_concordance_key:
+                # df = result[i]
+            if show_pos:
+                for _, df in result.items():    
+                    data['concordance'].append({
+                        'left': ' '.join(df.loc[df['offset'] < 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1)),
+                        'key': ' '.join(df.loc[df['offset'] == 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),),
+                        'right': ' '.join(df.loc[df['offset'] > 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),)
+                    })
+            else:
+                for _, df in result.items():    
+                    data['concordance'].append({
+                        'left': ' '.join(df.loc[df['offset'] < 0, 'word'].tolist()),
+                        'key': ' '.join(df.loc[df['offset'] == 0, 'word'].tolist()),
+                        'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
+                    })
 
             print(data['concordance'])
 

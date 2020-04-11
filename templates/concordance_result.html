@@ -73,24 +73,34 @@ Concordance
 
 <h5>你的搜尋</h5>
 <div class="row grey lighten-4">
-  <div class="col s4">
+  <div class="col xl1">
     <p><span class="badg">Query word</span> {{ query.word }}</p>
+  </div>
+  <div class="col xl1">
     <p><span class="badg">Boards</span>{{ query.boards }}</p>
+  </div>
+  <div class="col xl1">
     <p><span class="badg">Post type</span>{{ query.post_type }}</p>
-    
   </div>
-  <div class="col s4">
-    <p><span class="badg">Sorting</span>{{ query.sort }}</p>
-    <p><span class="badg">Order</span>{{ query.order }}</p>
-    <p><span class="badg">Part of speech</span>{% if query.pos %}On{% else %}Off     
-    {% endif %}</p>
-    
+  <div class="col xl1">
+    <p><span class="badg">Part of speech</span>{% if query.pos %}On{% else %}Off{% endif %}</p>     
   </div>
-  <div class="col s4">
+  <div class="col xl1">
     <p><span class="badg">Window size</span>{{ query.window_size }}</p>
+  </div>
+  <div class="col xl1">
     <p><span class="badg">Item per page</span>{{ query.size }}</p>
+  </div>
+  <div class="col xl1">
     <p><span class="badg">Date interval</span>{{ query.start }}-{{ query.end }}</p>
   </div>
+<!--
+
+  <div class="col s2">
+    <p><span class="badg">Sorting</span>{{ query.sort }}</p>
+    <p><span class="badg">Order</span>{{ query.order }}</p>
+  </div>
+-->
 </div>
 <h5>結果總筆數: {{ data.total }}</h5>
 
@@ -106,6 +116,14 @@ Concordance
       <tr>
         <td style="padding-bottom: 0">
           <div class="row" style="margin-bottom: 1em">
+	    <div class="col s1 left_align">
+	      #{{ data.page_times_size | add:forloop.counter }}  
+              <span>
+		<a href="https://www.ptt.cc/bbs/{{ d.board }}/{% if d.post_id%}{{ d.post_id }}{% else %}{{d.id}}{% endif %}.html" target="_blank">
+                  <i class="material-icons">link</i>
+                </a>
+              </span>
+	    </div>
             <div class="col s5 right-align">
                 {% if query.pos %}
                   {{ d.left|pos }}
@@ -120,7 +138,7 @@ Concordance
                   {{ d.key|safe }}
                 {% endif %}
             </div>
-            <div class="col s6 left-align">
+            <div class="col s5 left-align">
               {% if query.pos %}
                   {{ d.right|pos }}
                 {% else %}
@@ -128,6 +146,7 @@ Concordance
                 {% endif %}
             </div>
           </div>
+	  {% comment %}
           <div class="row info">
 
             <div class="col m4">
@@ -161,6 +180,7 @@ Concordance
               </span>
             </div>
           </div>
+	  {% endcomment %}
         </td>
     </tr>
     {% endfor %}

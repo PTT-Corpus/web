@@ -3,16 +3,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-
-[[source]]
-url = "https://pypi.org/simple"
-verify_ssl = true
-
 [packages]
-# mysqlclient = "==1.4.6"
 certifi = "==2018.4.16"
 chardet = "==3.0.4"
 defusedxml = "==0.5.0"
@@ -38,8 +29,8 @@ django-rest-auth = {extras = ["with-social"]}
 social-auth-core = "*"
 social-auth-app-django = "*"
 Cython = "*"
-# cwb-ccc = "*"
-cwb-python = "*"
+cwb-ccc = "*"
+pymongo = "*"
 
 [dev-packages]
 "flake8" = "*"
@@ -47,4 +38,4 @@ cwb-python = "*"
 httpie = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.7.7"

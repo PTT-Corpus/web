@@ -67,20 +67,20 @@ class ConcordanceForm(forms.Form):
     #    initial='LGBT_SEX',
     #    required=False,
     #)
-    sort = forms.CharField(
-        label='Sort',
-        widget=forms.RadioSelect(choices=(
-            ('published', 'Publish Time'),
-            ('upvote', 'Likes (推)'),
-            ('downvote', 'Dislikes (噓)'),
-        )),
-    )
-    order = forms.CharField(
-        label='Order',
-        widget=forms.RadioSelect(choices=(
-            ('desc', 'Descending'),
-            ('asc', 'Ascending')
-        )))
+    #    sort = forms.CharField(
+    #        label='Sort',
+    #        widget=forms.RadioSelect(choices=(
+    #            ('published', 'Publish Time'),
+    #            ('upvote', 'Likes (推)'),
+    #            ('downvote', 'Dislikes (噓)'),
+    #        )),
+    #    )
+    #    order = forms.CharField(
+    #        label='Order',
+    #        widget=forms.RadioSelect(choices=(
+    #            ('desc', 'Descending'),
+    #            ('asc', 'Ascending')
+    #        )))
     start = forms.DateField(
         label='Start Date',
         required=False,
@@ -120,14 +120,15 @@ class ConcordanceForm(forms.Form):
                 'word',
                 'boards',
                 Row(
-                    Span(4, 'post_type'),
-                    Span(4, 'sort'),
-                    Span(4, 'order'),
+                    Span(5, 'post_type'),
+                    Span(5, 'pos')
+                    # Span(4, 'sort'),
+                    # Span(4, 'order'),
                 ),
                 span_columns=6,
             ),
             Column(
-                'pos',
+                # 'pos',
                 Row(
                     Span(6, 'window_size'),
                     Span(6, 'size'),

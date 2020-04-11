@@ -8,3 +8,7 @@ docker-compose.yml
 pttweb.db
 static_pttweb
 vrt_data/
+cwb_data/
+cwb_registry/
+maria/
+mongo_data/
