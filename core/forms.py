@@ -55,7 +55,7 @@ class ConcordanceForm(forms.Form):
     )
 
     boards = forms.CharField(
-        label='Board',
+        label='找哪個版',
         widget=forms.Select(
             choices=b
         )
