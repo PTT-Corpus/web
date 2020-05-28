@@ -13,6 +13,8 @@ from .forms import (
 )
 from .data import boards
 from .concordance import get_concordance
+
+from .blacklab_api import *
 # jieba = Jieba()
 # ckip = CkipSegmenter()
 
@@ -51,6 +53,7 @@ class ConcordanceFormView(View):
     def get(self, request, *args, **kwargs):
         """GET method."""
         form = self.form_class(initial=self.initial)
+
         print(boards)
         return render(
             request,
@@ -86,20 +89,22 @@ class ConcordanceFormView(View):
 
             # 根據 size 和 page 計算出這一頁要顯示哪幾個concordance line
             start_index = data['size'] * data['page']
-            end_index = data['size'] * (data['page'] + 1)
+            # end_index = data['size'] * (data['page'] + 1)
 
-            result, total_hits = get_concordance(
+            result = blacklab_get_concordance(
                 query=form.cleaned_data['word'],
-                corpus_name=form.cleaned_data['boards'],
+                board=form.cleaned_data['boards'],
                 text_type=form.cleaned_data['post_type'],
                 show_pos=show_pos,
                 window_size=form.cleaned_data['window_size'],
+                start_year=form.cleaned_data['start'],
+                end_year=form.cleaned_data['end'],
+                hits_per_page=form.cleaned_data['size'],
                 start_index=start_index,
-                end_index=end_index
             )
 
             # 總共有幾個concordance line
-            data['total'] = total_hits
+            data['total'] = result['totalHits']
 
             # keys_of_result_dict = list(result.keys())
             # target_concordance_key = keys_of_result_dict[start_index:end_index]
@@ -108,19 +113,37 @@ class ConcordanceFormView(View):
 
             # for i in target_concordance_key:
                 # df = result[i]
+            # if show_pos:
+            #     for _, df in result.items():    
+            #         data['concordance'].append({
+            #             'left': ' '.join(df.loc[df['offset'] < 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1)),
+            #             'key': ' '.join(df.loc[df['offset'] == 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),),
+            #             'right': ' '.join(df.loc[df['offset'] > 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),)
+            #         })
+            # else:
+            #     for _, df in result.items():    
+            #         data['concordance'].append({
+            #             'left': ' '.join(df.loc[df['offset'] < 0, 'word'].tolist()),
+            #             'key': ' '.join(df.loc[df['offset'] == 0, 'word'].tolist()),
+            #             'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
+            #         })
+
+
             if show_pos:
-                for _, df in result.items():    
+                for hit in result['hits']:
                     data['concordance'].append({
-                        'left': ' '.join(df.loc[df['offset'] < 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1)),
-                        'key': ' '.join(df.loc[df['offset'] == 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),),
-                        'right': ' '.join(df.loc[df['offset'] > 0, ['word', 'pos']].apply(lambda x: '##'.join(x), axis=1),)
+                        'left': ' '.join([f"{hit['left']['word'][i]}##{hit['left']['pos'][i]}" for i, _ in enumerate(hit['left']['word'])]),
+                        'key': ' '.join([f"{hit['match']['word'][i]}##{hit['match']['pos'][i]}" for i, _ in enumerate(hit['match']['word'])]),
+                        'right': ' '.join([f"{hit['right']['word'][i]}##{hit['right']['pos'][i]}" for i, _ in enumerate(hit['right']['word'])]),
+
                     })
             else:
-                for _, df in result.items():    
+                for hit in result['hits']:
                     data['concordance'].append({
-                        'left': ' '.join(df.loc[df['offset'] < 0, 'word'].tolist()),
-                        'key': ' '.join(df.loc[df['offset'] == 0, 'word'].tolist()),
-                        'right': ' '.join(df.loc[df['offset'] > 0, 'word'].tolist())
+                        'left': ' '.join(hit['left']['word']),
+                        'key': ' '.join(hit['match']['word']),
+                        'right': ' '.join(hit['right']['word']),
+
                     })
 
             # print(data['concordance'])

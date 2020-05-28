@@ -82,16 +82,22 @@ class ConcordanceForm(forms.Form):
     #            ('desc', 'Descending'),
     #            ('asc', 'Ascending')
     #        )))
-    start = forms.DateField(
-        label='Start Date',
-        required=False,
+    start = forms.IntegerField(
+        label='起始年份',
+        min_value=2001,
+        max_value=2020,
+        initial=2020,
+        # required=False,
     )
-    start.widget.attrs['class'] = 'datepicker'
-    end = forms.DateField(
-        label='End Date',
-        required=False,
+    # start.widget.attrs['class'] = 'datepicker'
+    end = forms.IntegerField(
+        label='結束年份',
+        min_value=2001,
+        max_value=2020,
+        initial=2020,
+        # required=False,
     )
-    end.widget.attrs['class'] = 'datepicker'
+    # end.widget.attrs['class'] = 'datepicker'
     pos = forms.BooleanField(
         label='顯示詞性',
         widget=forms.CheckboxInput(),
@@ -111,7 +117,7 @@ class ConcordanceForm(forms.Form):
         widget=forms.NumberInput(
             attrs={'type': 'range', 'min': 10, 'max': 100, 'step': 10}
         ),
-        initial=10,
+        initial=50,
         required=False,
     )
 
@@ -150,5 +156,5 @@ class ConcordanceForm(forms.Form):
         end = cleaned_data.get('end')
         if (start and end) and (start > end):
             raise forms.ValidationError(
-                "End date cannot be earlier than start date.")
+                "起始年份不得晚於結束年份！")
         return cleaned_data
