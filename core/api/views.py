@@ -16,8 +16,8 @@ from core.api.serializers import SegmentationSerializer, ConcordanceSerializer
 from core.views import SegmentationFormView
 
 _segcom = SegmentationFormView._segcom
-jieba = Jieba()
-ckip = CkipSegmenter()
+# jieba = Jieba()
+# ckip = CkipSegmenter()
 
 
 @api_view(['GET'])

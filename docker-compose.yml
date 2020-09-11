@@ -20,6 +20,13 @@ services:
         #   environment:
         #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
         #     ME_CONFIG_MONGODB_ADMINPASSWORD: example
+  # blacklab-server:
+  #   build:
+  #     context: .
+  #   ports:
+  #     - "8887:8080"
+  #   volumes:
+  #     - ./indexes:/data/blacklab/indexes
 
   django:
     build: .
@@ -36,9 +43,9 @@ services:
       && uwsgi --master --http 0.0.0.0:8888 --module web.wsgi --static-map /static_pttweb=static_pttweb --process 4 --manage-script-name --mount=/pttcorp=web/wsgi.py"
 
     volumes:
-    - ./vrt_data:/app/cwb/vrt
-    - ./cwb_registry:/app/cwb/registry
-    - ./cwb_data:/app/cwb/data
+    # - ./vrt_data:/app/cwb/vrt
+    # - ./cwb_registry:/app/cwb/registry
+    # - ./cwb_data:/app/cwb/data
     - ./scripts:/app/scripts
     - ./core:/app/core
     - ./templates:/app/templates

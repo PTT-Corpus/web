@@ -1,9 +1,10 @@
 import urllib.parse
 import urllib.request
 import json
+import os
 
 
-API_URI = "http://140.112.147.125:8887/blacklab-server/indexes"
+API_URI = os.environ['PTT_BACKEND_URL']
 
 # post type
 POST = '0'

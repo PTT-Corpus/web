@@ -28,8 +28,6 @@ python-social-auth = "*"
 django-rest-auth = {extras = ["with-social"]}
 social-auth-core = "*"
 social-auth-app-django = "*"
-Cython = "*"
-cwb-ccc = "*"
 pymongo = "*"
 
 [dev-packages]

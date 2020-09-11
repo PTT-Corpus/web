@@ -1,4 +1,4 @@
-from ccc import Corpus
+# from ccc import Corpus
 
 # post type
 POST = 0
