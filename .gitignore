@@ -213,3 +213,4 @@ cwb_data/
 cwb_registry/
 vrt_data/
 mongo_data/
+blacklab_server/indexes
