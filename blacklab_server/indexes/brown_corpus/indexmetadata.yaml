@@ -1,0 +1,72 @@
+---
+displayName: "test_index"
+description: ""
+contentViewable: false
+textDirection: "ltr"
+documentFormat: "tei"
+tokenCount: 1008320
+versionInfo:
+  blackLabBuildTime: "2020-04-13 00:17:43"
+  blackLabVersion: "2.0.0"
+  indexFormat: "3.1"
+  timeCreated: "2020-04-13 15:36:21"
+  timeModified: "2020-04-13 15:36:21"
+  alwaysAddClosingToken: true
+  tagLengthInPayload: true
+fieldInfo:
+  namingScheme: "DEFAULT"
+  defaultAnalyzer: "default"
+  unknownCondition: "never"
+  unknownValue: "unknown"
+  titleField: "fromInputFile"
+  metadataFieldGroups: []
+  annotationGroups: {}
+  metadataFields:
+    fromInputFile:
+      displayName: "From input file"
+      uiType: ""
+      description: ""
+      type: "untokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: true
+      values:
+        /brown_corpus_tei/brownCorpus.lemmatized.xml: 500
+      displayValues: {}
+      displayOrder: []
+  complexFields:
+    contents:
+      displayName: "Contents"
+      description: "Contents of the documents."
+      mainProperty: "word"
+      displayOrder:
+      - "word"
+      - "lemma"
+      - "pos"
+      annotations:
+      - name: "word"
+        displayName: "Word"
+        description: ""
+        uiType: ""
+        isInternal: false
+      - name: "lemma"
+        displayName: "Lemma"
+        description: ""
+        uiType: ""
+        isInternal: false
+      - name: "pos"
+        displayName: "PoS"
+        description: ""
+        uiType: ""
+        isInternal: false
+      - name: "starttag"
+        displayName: "Starttag"
+        description: ""
+        uiType: ""
+        isInternal: true
+      - name: "punct"
+        displayName: "Punct"
+        description: ""
+        uiType: ""
+        isInternal: true

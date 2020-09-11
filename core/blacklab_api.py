@@ -16,6 +16,9 @@ def get_all_boards():
 
     url = f"{API_URI}/fields/board?outputformat=json" 
 
+    print("@@")
+    print(url)
+
     with urllib.request.urlopen(url) as f:
         response = json.loads(f.read().decode('utf-8'))
     

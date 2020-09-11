@@ -1,0 +1,7 @@
+---
+configVersion: 2
+
+# Where indexes can be found
+# (list directories whose subdirectories are indexes, or directories containing a single index)
+indexLocations:
+- /data/blacklab/indexes

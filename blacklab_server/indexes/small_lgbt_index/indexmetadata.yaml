@@ -1,0 +1,183 @@
+---
+displayName: "small_lgbt_index"
+description: ""
+contentViewable: false
+textDirection: "ltr"
+documentFormat: "ttt"
+tokenCount: 1413
+versionInfo:
+  blackLabBuildTime: "2020-04-13 00:17:43"
+  blackLabVersion: "2.0.0"
+  indexFormat: "3.1"
+  timeCreated: "2020-04-14 00:43:34"
+  timeModified: "2020-04-14 00:43:34"
+  alwaysAddClosingToken: true
+  tagLengthInPayload: true
+fieldInfo:
+  namingScheme: "DEFAULT"
+  defaultAnalyzer: "default"
+  unknownCondition: "never"
+  unknownValue: "unknown"
+  titleField: "fromInputFile"
+  authorField: "author"
+  dateField: "date"
+  metadataFieldGroups: []
+  annotationGroups: {}
+  metadataFields:
+    author:
+      displayName: "Author"
+      uiType: "text"
+      description: ""
+      type: "tokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: false
+      values:
+        sunny1st: 1
+        gs3731: 1
+        ebobo: 1
+        poprock5981: 1
+        nightbjer19: 3
+        sisawn78542: 1
+        NOREG0101282: 1
+        xj6m4au3: 1
+        Wake1069: 1
+        Nick1523: 1
+        ethereal0204: 2
+        wxi: 1
+        dummykarlush: 1
+        hijusttalk: 3
+        mijuei: 1
+        Jessejay: 1
+        APTX4869X: 1
+        papajaja: 1
+        ray78994: 1
+        ember240: 1
+        jaannddyy: 5
+        alloc: 1
+        huei1205: 1
+        HENRY4869: 1
+        zhmmg25: 1
+        f9540411: 1
+        ylee14: 1
+        rueiping: 1
+        zx012333: 1
+        kilik0960: 1
+        thgir: 1
+        dnswang5: 1
+        wahimodeux: 1
+        purehug: 1
+        Fuchienn: 1
+        emoa: 1
+        pc1738: 1
+        KAMTER: 7
+        charley1204: 2
+        timbear: 1
+        Bumbler633: 2
+        flightleaf: 1
+        kenryu: 2
+        ocalim: 1
+        danielowl: 1
+        Dongdi: 1
+        bearhwa: 1
+        monsterdog: 1
+        tontonni: 1
+        knight0118: 4
+      displayValues: {}
+      displayOrder: []
+    date:
+      displayName: "Date"
+      uiType: "range"
+      description: ""
+      type: "tokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: true
+      values:
+        "2017-10-20": 2
+        "2017-6-30": 2
+        "2017-3-18": 2
+        "2017-2-26": 2
+        "2017-5-18": 2
+      displayValues: {}
+      displayOrder: []
+    doc_id:
+      displayName: "Doc id"
+      uiType: "text"
+      description: ""
+      type: "tokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: true
+      values:
+        M.1489808751.A.E6C: 29
+        M.1498789937.A.569: 2
+        M.1508435498.A.DE1: 19
+        M.1495108736.A.35F: 21
+        M.1488108626.A.2C1: 64
+      displayValues: {}
+      displayOrder: []
+    fromInputFile:
+      displayName: "From input file"
+      uiType: ""
+      description: ""
+      type: "untokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: true
+      values:
+        /small_lgbt/lgbt_1.xml: 1
+        /small_lgbt/lgbt_2.xml: 1
+        /small_lgbt/lgbt_0.xml: 1
+        /small_lgbt/lgbt_4.xml: 1
+        /small_lgbt/lgbt_3.xml: 1
+      displayValues: {}
+      displayOrder: []
+    post_type:
+      displayName: "Post type"
+      uiType: "select"
+      description: ""
+      type: "tokenized"
+      analyzer: "DEFAULT"
+      unknownValue: "unknown"
+      unknownCondition: "NEVER"
+      valueListComplete: true
+      values:
+        comment: 125
+        title: 5
+        body: 5
+      displayValues: {}
+      displayOrder: []
+  complexFields:
+    contents:
+      displayName: "Contents"
+      description: "Contents of the documents."
+      mainProperty: "word"
+      displayOrder:
+      - "word"
+      - "pos"
+      annotations:
+      - name: "word"
+        displayName: "Word"
+        description: ""
+        uiType: ""
+        isInternal: false
+      - name: "pos"
+        displayName: "PoS"
+        description: ""
+        uiType: ""
+        isInternal: false
+      - name: "starttag"
+        displayName: "Starttag"
+        description: ""
+        uiType: ""
+        isInternal: true
+      - name: "punct"
+        displayName: "Punct"
+        description: ""
+        uiType: ""
+        isInternal: true

@@ -10,7 +10,7 @@ ADD Pipfile.lock /tmp
 
 WORKDIR /tmp
 RUN pip3 install --no-cache-dir -r requirements.txt
-RUN pip3 install pipenv && pipenv install
+# RUN pip3 install pipenv && pipenv install
 
 # Download CWB & CWB-PERL from SVN
 # RUN svn co http://svn.code.sf.net/p/cwb/code/cwb/trunk /cwb

@@ -27,20 +27,33 @@ services:
   #     - "8887:8080"
   #   volumes:
   #     - ./indexes:/data/blacklab/indexes
+  blacklabserver:
+    build: 
+      context: blacklab_server
+    ports:
+      - '8887:8080'
+    volumes:
+      - ${INDEX_PATH}:/data/blacklab/indexes
 
   django:
     build: .
     image: pttweb:1.0
     restart: always
     ports:
-      - 9898:8888
+      - '9898:8888'
     env_file:
       - pttweb.env
+    environment:
+      - PTT_BACKEND_URL=http://blacklabserver:8080/blacklab-server/indexes
+    depends_on:
+      - blacklabserver
     command: >
       sh -c "
       python manage.py migrate --no-input
       && python manage.py collectstatic --no-input
       && uwsgi --master --http 0.0.0.0:8888 --module web.wsgi --static-map /static_pttweb=static_pttweb --process 4 --manage-script-name --mount=/pttcorp=web/wsgi.py"
+    # command: >
+    #   sh -c "echo qqqqqqq & curl http://blacklabserver:8080/blacklab-server/"
 
     volumes:
     # - ./vrt_data:/app/cwb/vrt
