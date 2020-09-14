@@ -20,13 +20,7 @@ services:
         #   environment:
         #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
         #     ME_CONFIG_MONGODB_ADMINPASSWORD: example
-  # blacklab-server:
-  #   build:
-  #     context: .
-  #   ports:
-  #     - "8887:8080"
-  #   volumes:
-  #     - ./indexes:/data/blacklab/indexes
+
   blacklabserver:
     build: 
       context: blacklab_server
@@ -45,6 +39,7 @@ services:
       - pttweb.env
     environment:
       - PTT_BACKEND_URL=http://blacklabserver:8080/blacklab-server/indexes
+      - PTT_BACKEND_PUBLIC_URL=http://140.112.147.132:8887/blacklab-server/indexes
     depends_on:
       - blacklabserver
     command: >

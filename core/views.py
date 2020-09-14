@@ -18,6 +18,7 @@ from .concordance import get_concordance
 from .blacklab_api import *
 
 API_URI = os.environ['PTT_BACKEND_URL']
+PUBLIC_API_URI = os.environ['PTT_BACKEND_PUBLIC_URL']
 
 def index(request):
     """Index page."""
@@ -156,8 +157,8 @@ class ConcordanceFormView(View):
                     })
 
             # print(data['concordance'])
-            link_for_output = f"{API_URI}/hits-csv/?outputformat=csv&indexname=indexes&patt={result['patt']}"
-            link_for_output = urllib.parse.quote(link_for_output, safe=":/&?=")
+            link_for_output = f"{PUBLIC_API_URI}/hits-csv/?outputformat=csv&indexname=indexes&patt={result['patt']}"
+            link_for_output = urllib.parse.quote(link_for_output, safe=':/&?="')
 
             return render(
                 request,
