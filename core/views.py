@@ -1,5 +1,6 @@
 """Core views."""
 import os
+import urllib.parse
 
 from django.shortcuts import render
 from django.views import View
@@ -15,9 +16,8 @@ from .data import boards
 from .concordance import get_concordance
 
 from .blacklab_api import *
-# jieba = Jieba()
-# ckip = CkipSegmenter()
 
+API_URI = os.environ['PTT_BACKEND_URL']
 
 def index(request):
     """Index page."""
@@ -42,7 +42,8 @@ class ConcordanceFormView(View):
 
     initial = {
         'word': '台灣',
-        'post_type': 0,
+        'post_type': 3,
+        'cql_enable': False,
          # 'order': 'desc',
          # 'sort': 'published',
         'pos': False,
@@ -96,12 +97,20 @@ class ConcordanceFormView(View):
                 board=form.cleaned_data['boards'],
                 text_type=form.cleaned_data['post_type'],
                 show_pos=show_pos,
+                cql_enable=form.cleaned_data['cql_enable'],
                 window_size=form.cleaned_data['window_size'],
                 start_year=form.cleaned_data['start'],
                 end_year=form.cleaned_data['end'],
                 hits_per_page=form.cleaned_data['size'],
                 start_index=start_index,
             )
+
+            # 表示出錯
+            if type(result) is tuple:
+                error_code = result[0]
+                error_log = result[1]
+
+                return render(request, self.template_name, {'form': form, 'error': error_log})
 
             # 總共有幾個concordance line
             data['total'] = result['totalHits']
@@ -147,6 +156,8 @@ class ConcordanceFormView(View):
                     })
 
             # print(data['concordance'])
+            link_for_output = f"{API_URI}/hits-csv/?outputformat=csv&indexname=indexes&patt={result['patt']}"
+            link_for_output = urllib.parse.quote(link_for_output, safe=":/&?=")
 
             return render(
                 request,
@@ -154,7 +165,8 @@ class ConcordanceFormView(View):
                 {
                     'form': form,
                     'data': data,
-                    'query': request.POST
+                    'query': request.POST,
+                    'link_for_output': link_for_output
                 }
             )
 

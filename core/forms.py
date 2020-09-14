@@ -43,14 +43,22 @@ class ConcordanceForm(forms.Form):
         label='Query',
         help_text='可使用CQL查詢或一般查詢'
     )
+
+    cql_enable = forms.BooleanField(
+        label='使用CQL模式',
+        widget=forms.CheckboxInput(),
+        required=False,
+    )
+
+
     post_type = forms.CharField(
-        label='搜尋對象',
+        label='搜尋對象 (此功能維護中)',
         widget=forms.RadioSelect(choices=(
             (0, "只找貼文內容"),
             (1, "只找回覆"),
             (2, "只找標題"),
-            (None, "找全部"),
-        )),
+            (3, "找全部"),
+        ), attrs={"disabled":"disabled"}),
         required=False,
     )
 
@@ -125,6 +133,7 @@ class ConcordanceForm(forms.Form):
         Row(
             Column(
                 'word',
+                'cql_enable',
                 'boards',
                 Row(
                     Span(6, 'post_type'),

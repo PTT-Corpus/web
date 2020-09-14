@@ -73,25 +73,25 @@ Concordance
 
 <h5>你的搜尋</h5>
 <div class="row grey lighten-4">
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Query word</span> {{ query.word }}</p>
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Boards</span>{{ query.boards }}</p>
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Post type</span>{{ query.post_type }}</p>
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Part of speech</span>{% if query.pos %}On{% else %}Off{% endif %}</p>     
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Window size</span>{{ query.window_size }}</p>
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Item per page</span>{{ query.size }}</p>
   </div>
-  <div class="col xl1">
+  <div class="col">
     <p><span class="badg">Date interval</span>{{ query.start }}-{{ query.end }}</p>
   </div>
 <!--
@@ -102,7 +102,14 @@ Concordance
   </div>
 -->
 </div>
-<h5>結果總筆數: {{ data.total }}</h5>
+
+<div>
+    <h5>結果總筆數: {{ data.total }}</h5>
+    <a class="waves-effect waves-light btn-small grey darken-3" href="{{link_for_output}}"><i class="material-icons left">get_app</i>匯出結果至CSV檔</a>
+</div>
+
+
+
 
  <table class="highlight">
   <thead>

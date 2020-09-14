@@ -7,6 +7,9 @@ Concordance
 
 
 {% block main_content %}
+
+{% if error %}<div class="red lighten-4 card-panel">錯誤訊息: （輸入有誤，請重新輸入，或來信提供此錯誤訊息。）</br> {{ error }}</div>{% endif %}
+
 <form method="POST">
   {% csrf_token %}
   {% form form=form %}
