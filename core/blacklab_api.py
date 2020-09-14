@@ -71,6 +71,7 @@ def blacklab_get_concordance(query=None, board=None, text_type=None, show_pos=Fa
     result['hits'] = response['hits']
     result['doc'] = response['docInfos']
     result['patt'] = query
+    result['filter'] = filter_str
 
 
     return result

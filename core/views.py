@@ -157,8 +157,16 @@ class ConcordanceFormView(View):
                     })
 
             # print(data['concordance'])
-            link_for_output = f"{PUBLIC_API_URI}/hits-csv/?outputformat=csv&indexname=indexes&patt={result['patt']}"
-            link_for_output = urllib.parse.quote(link_for_output, safe=':/&?="')
+            param = {
+                "outputformat": "csv",
+                "indexname": "indexes",
+                "patt": result['patt'],
+                "filter": result['filter']
+            }
+
+            encoded_param = urllib.parse.urlencode(param)
+            link_for_output = f"{PUBLIC_API_URI}/hits-csv?{encoded_param}"
+            # link_for_output = urllib.parse.quote(link_for_output, safe=':/&?="')
 
             return render(
                 request,
