@@ -126,7 +126,7 @@ Concordance
 	    <div class="col s1 left_align">
 	      #{{ data.page_times_size | add:forloop.counter }}  
               <span>
-		<a href="https://www.ptt.cc/bbs/{{ d.board }}/{% if d.post_id%}{{ d.post_id }}{% else %}{{d.id}}{% endif %}.html" target="_blank">
+		<a href="https://www.ptt.cc/bbs/{{d.post_link}}.html" target="_blank">
                   <i class="material-icons">link</i>
                 </a>
               </span>

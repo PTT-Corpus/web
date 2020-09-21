@@ -20,6 +20,15 @@ Please add these evvironment variables:
     MYSQL_DATABASE=
     ALLOWED_HOSTS=
 
+### Before executing `docker-compose`...
+
+Please first export INDEX_PATH to the right path of blacklab index.
+E.g.
+```
+$ export INDEX_PATH=~/blacklab_index
+```
+
+
 
 ### Install deppendencies
 

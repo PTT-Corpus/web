@@ -139,24 +139,32 @@ class ConcordanceFormView(View):
             #         })
 
 
-            if show_pos:
-                for hit in result['hits']:
+            
+            for hit in result['hits']:
+
+                doc_pid = hit['docPid']
+                print(doc_pid)
+                post_id = result['doc'][doc_pid]['doc_id'][0]
+                board = result['doc'][doc_pid]['board'][0]
+                post_link = f"{board}/{post_id}"
+
+                if show_pos:
                     data['concordance'].append({
                         'left': ' '.join([f"{hit['left']['word'][i]}##{hit['left']['pos'][i]}" for i, _ in enumerate(hit['left']['word'])]),
                         'key': ' '.join([f"{hit['match']['word'][i]}##{hit['match']['pos'][i]}" for i, _ in enumerate(hit['match']['word'])]),
                         'right': ' '.join([f"{hit['right']['word'][i]}##{hit['right']['pos'][i]}" for i, _ in enumerate(hit['right']['word'])]),
-
+                        'post_link': post_link
                     })
-            else:
-                for hit in result['hits']:
+                else:
                     data['concordance'].append({
                         'left': ' '.join(hit['left']['word']),
                         'key': ' '.join(hit['match']['word']),
                         'right': ' '.join(hit['right']['word']),
-
+                        'post_link': post_link
                     })
 
-            # print(data['concordance'])
+
+            # for export CSV
             param = {
                 "outputformat": "csv",
                 "indexname": "indexes",
@@ -175,7 +183,7 @@ class ConcordanceFormView(View):
                     'form': form,
                     'data': data,
                     'query': request.POST,
-                    'link_for_output': link_for_output
+                    'link_for_output': link_for_output,
                 }
             )
 
