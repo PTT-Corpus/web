@@ -52,14 +52,20 @@ class ConcordanceForm(forms.Form):
 
 
     post_type = forms.CharField(
-        label='搜尋對象 (此功能維護中)',
-        widget=forms.RadioSelect(choices=(
-            (0, "只找貼文內容"),
-            (1, "只找回覆"),
-            (2, "只找標題"),
-            (3, "找全部"),
-        ), attrs={"disabled":"disabled"}),
-        required=False,
+        label='搜尋對象',
+        widget=forms.RadioSelect(
+            choices=(
+                (0, "找全部"),
+                (1, "只找標題"),
+                (2, "只找內文"),
+                (3, "只找回文: 推文"),
+                (4, "只找回文: 噓文"),
+                (5, "只找回文: 箭頭文"),
+                (6, "只找回文: 所有回文"),
+            ), 
+            # attrs={"disabled":"disabled"}
+        ),
+        required=True,
     )
 
     boards = forms.CharField(

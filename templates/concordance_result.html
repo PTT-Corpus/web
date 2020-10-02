@@ -62,6 +62,10 @@ em {
   padding: 0;
 }
 
+td, th {
+  padding: 5px 5px;
+}
+
 </style>
 {% endblock extra_css %}
 
@@ -122,7 +126,7 @@ Concordance
     {% for d in data.concordance %}
       <tr>
         <td style="padding-bottom: 0">
-          <div class="row" style="margin-bottom: 1em">
+          <div class="row" style="margin-bottom: 0em">
 	    <div class="col s1 left_align">
 	      #{{ data.page_times_size | add:forloop.counter }}  
               <span>
